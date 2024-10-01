@@ -157,7 +157,7 @@ const CarouselContent = forwardRef<ElementRef<'div'>, ComponentPropsWithRef<'div
     const { carouselRef } = useCarousel();
 
     return (
-      <div className="-mx-2 overflow-hidden px-2" ref={carouselRef}>
+      <div className="w-full overflow-hidden" ref={carouselRef}>
         <div className={cn('-mx-6 mb-16 mt-8 flex lg:mt-10', className)} ref={ref} {...props}>
           {children}
         </div>

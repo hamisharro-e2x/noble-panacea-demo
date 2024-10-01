@@ -126,7 +126,9 @@ export const Header = async ({ cart }: { cart: ReactNode }) => {
           className="flex items-center justify-center 2xl:container sm:px-10 lg:gap-8 lg:px-12 2xl:mx-auto 2xl:px-0"
           opts={{ loop: true }}
         >
-          <CarouselPreviousIndicator className="hidden size-4 lg:flex 2xl:size-5" />
+          <div className="pl-2">
+            <CarouselPreviousIndicator className="hidden size-4 lg:flex 2xl:size-5" />
+          </div>
           <CarouselContent className="m-0 my-2 lg:mt-2 2xl:my-4">
             {[
               'Free dose of Overnight Chronobiology Peel (£35 value) when you spend +£250',
@@ -140,13 +142,15 @@ export const Header = async ({ cart }: { cart: ReactNode }) => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselNextIndicator className="hidden size-4 lg:flex 2xl:size-5" />
+          <div className="pr-2">
+            <CarouselNextIndicator className="hidden size-4 lg:flex 2xl:size-5" />
+          </div>
         </Carousel>
       </div>
       <NavigationMenu className="border-b">
         <div className="w-full">
           <div className="flex items-center justify-between py-2 font-light 2xl:container sm:px-10 lg:gap-8 lg:px-12 2xl:mx-auto 2xl:px-0 2xl:py-10">
-            <div className="flex items-center space-x-4 text-xs 2xl:text-sm">
+            <div className="hidden items-center space-x-4 pl-2 text-xs lg:flex 2xl:text-sm">
               <a href="/shipping-returns/">Store &amp; Treatments</a>
               <span>|</span>
               <div className="flex cursor-pointer items-center">

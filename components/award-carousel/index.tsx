@@ -25,13 +25,17 @@ function AwardCarousel() {
     <div className="relative flex flex-col items-center justify-center space-y-8">
       <h2 className="text-4xl font-light uppercase">Our awards</h2>
       <Carousel className="flex items-center justify-center" opts={{ loop: true }}>
-        <CarouselPreviousIndicator className="z-10 hidden size-4 lg:flex 2xl:size-5" />
+        <div className="pl-2">
+          <CarouselPreviousIndicator className="z-10 hidden size-4 lg:flex 2xl:size-5" />
+        </div>
         <CarouselContent className="z-0 m-0 my-2 lg:mt-2 2xl:my-4">
           {awards.map((href) => (
             <Image alt={href} height={300} key={href} src={href} width={300} />
           ))}
         </CarouselContent>
-        <CarouselNextIndicator className="z-10 hidden size-4 lg:flex 2xl:size-5" />
+        <div className="pr-2">
+          <CarouselNextIndicator className="z-10 hidden size-4 lg:flex 2xl:size-5" />
+        </div>
       </Carousel>
     </div>
   );
