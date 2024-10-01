@@ -2,6 +2,7 @@ import React, { PropsWithChildren, Suspense } from 'react';
 
 import DynamicProductGrid from '~/components/amplience/dynamic-product-grid/dynamic-product-grid';
 import AwardCarousel from '~/components/award-carousel';
+import ContentBlock from '~/components/content-block';
 import { Footer } from '~/components/footer/footer';
 import { Header } from '~/components/header';
 import { Cart } from '~/components/header/cart';
@@ -77,6 +78,11 @@ export default function DefaultLayout({ children }: PropsWithChildren) {
             },
             className: 'bg-gray-100',
           }}
+        />
+        <ContentBlock
+          backgroundImage="https://applytrial.a.bigcontent.io/v1/static/Laboratory_Footer"
+          content="<span>CRUELTY-FREE, GLUTEN-FREE, AND FRAGRANCE FREE. <br> Free of parabens, silicones, mineral oil, phthalates, petrolatum, formaldehyde, cocamide DEA, propylene glycol, triclosan, myristyl myristate,  GMOs, nitrates, SLS &amp; SLES, artificial colorants, synthetic fragrances, essential oils, paraffin, alcohol, ingredients of animal origin, PEG, and EDTA.</span>"
+          title="Our Ingredient Integrity"
         />
         {children}
       </main>
