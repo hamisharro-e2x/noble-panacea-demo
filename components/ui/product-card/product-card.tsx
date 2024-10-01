@@ -49,7 +49,7 @@ ProductCardBadge.displayName = 'ProductCardBadge';
 const ProductCardInfo = forwardRef<ElementRef<'div'>, ComponentPropsWithRef<'div'>>(
   ({ children, className, ...props }, ref) => {
     return (
-      <div className={cn('flex flex-1 flex-col gap-1', className)} ref={ref} {...props}>
+      <div className={cn('flex flex-1 flex-col gap-3', className)} ref={ref} {...props}>
         {children}
       </div>
     );

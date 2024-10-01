@@ -127,8 +127,8 @@ export const ProductCard = ({
         {showBrand && product.brand && (
           <ProductCardInfoBrandName>{product.brand.name}</ProductCardInfoBrandName>
         )}
-        {category && <p>{category.name}</p>}
-        <ProductCardInfoProductName className="font-light">
+        {category && <p className="uppercase">{category.name}</p>}
+        <ProductCardInfoProductName className="font-light uppercase">
           {product.path ? (
             <Link
               className="focus:outline focus:outline-4 focus:outline-offset-2 focus:outline-blue-primary/20 focus:ring-0"

@@ -22,7 +22,7 @@ const awards = [
 
 function AwardCarousel() {
   return (
-    <div className="relative flex flex-col items-center justify-center space-y-8">
+    <div className="relative flex flex-col items-center justify-center">
       <h2 className="text-4xl font-light uppercase">Our awards</h2>
       <Carousel className="flex items-center justify-center" opts={{ loop: true }}>
         <div className="pl-2">
