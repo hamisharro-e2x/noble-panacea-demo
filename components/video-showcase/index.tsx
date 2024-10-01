@@ -1,27 +1,43 @@
+import { cn } from '~/lib/utils';
+
 import { Button } from '../ui/button';
 import WistiaPlayer from '../wistia-player';
 
-const content = {
-  videoId: '6d52jdbxr1',
-  eyeBrow: 'NEW',
-  title: 'Eye Lift Concentrate',
-  subTitle: 'Instant Lift. Lasting Firmness.',
+interface VideoShowcaseProps {
+  videoId: string;
+  eyeBrow?: string;
+  title: string;
+  subTitle?: string;
+  description?: string;
   ctaButton: {
-    text: 'FIND OUT MORE',
-    url: '/#',
-  },
-};
+    text: string;
+    url: string;
+  };
+  className?: string;
+}
 
-function VideoShowcase() {
-  const { videoId, eyeBrow, title, subTitle, ctaButton } = content;
-
+function VideoShowcase({
+  videoId,
+  eyeBrow,
+  title,
+  subTitle,
+  description,
+  ctaButton,
+  className,
+}: VideoShowcaseProps) {
   return (
-    <div className="flex flex-col justify-center space-y-5 text-center font-light">
+    <div
+      className={cn(
+        'flex flex-col justify-center space-y-5 py-4 text-center font-light',
+        className,
+      )}
+    >
       {typeof eyeBrow === 'string' && <p className="text-lg">{eyeBrow}</p>}
       <div>
         <h1 className="text-3xl">{title}</h1>
-        <p className="text-base">{subTitle}</p>
+        {typeof subTitle === 'string' && <p className="text-base">{subTitle}</p>}
       </div>
+      {typeof description === 'string' && <p className="text-base">{description}</p>}
       <WistiaPlayer videoId={videoId} wrapper={`wistia-player-${videoId}`} />
       <Button asChild className="mx-auto w-fit" variant="tertiary">
         <a href={ctaButton.url}>{ctaButton.text}</a>

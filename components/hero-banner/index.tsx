@@ -83,9 +83,9 @@ function HeroBanner() {
         <CarouselNextIndicator className="hidden size-4 lg:flex 2xl:size-5" />
       </div>
       <CarouselPagination className="hidden lg:flex">
-        <CarouselPaginationTab index={0} />
-        <CarouselPaginationTab index={1} />
-        <CarouselPaginationTab index={2} />
+        {heroContent.map(({ title }, index) => (
+          <CarouselPaginationTab index={index} key={`tab-${title}`} />
+        ))}
       </CarouselPagination>
     </Carousel>
   );
