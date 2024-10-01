@@ -34,7 +34,7 @@ function VideoShowcase({
     >
       {typeof eyeBrow === 'string' && <p className="text-lg">{eyeBrow}</p>}
       <div>
-        <h1 className="text-3xl">{title}</h1>
+        <h1 className="text-3xl uppercase">{title}</h1>
         {typeof subTitle === 'string' && <p className="text-base">{subTitle}</p>}
       </div>
       {typeof description === 'string' && <p className="text-base">{description}</p>}
