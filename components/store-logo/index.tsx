@@ -18,10 +18,10 @@ export const StoreLogo = async () => {
   return (
     <Image
       alt={logo.image.altText ? logo.image.altText : storeName}
-      height={32}
+      height={26}
       priority
       src={logo.image.url}
-      width={155}
+      width={307}
     />
   );
 };

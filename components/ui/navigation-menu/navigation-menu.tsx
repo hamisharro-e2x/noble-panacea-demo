@@ -51,7 +51,7 @@ const NavigationMenu = forwardRef<
           <div className="relative">
             <div
               className={cn(
-                'group flex min-h-[92px] items-center justify-between gap-6 overflow-hidden bg-white px-6 2xl:container sm:px-10 lg:gap-8 lg:px-12 2xl:mx-auto 2xl:px-0',
+                'group flex min-h-[92px] items-center justify-between gap-6 overflow-hidden bg-white',
                 className,
               )}
               {...props}
@@ -156,7 +156,7 @@ const NavigationMenuLink = forwardRef<
   return (
     <NavigationMenuPrimitive.Link
       className={cn(
-        'flex justify-between p-3 font-semibold hover:text-blue-primary focus:outline-none focus:ring-4 focus:ring-blue-primary/20',
+        'flex justify-between p-5 font-light hover:text-blue-primary focus:outline-none focus:ring-4 focus:ring-blue-primary/20',
         className,
       )}
       onClick={() => setIsExpanded(false)}

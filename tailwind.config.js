@@ -33,7 +33,7 @@ const config = {
     },
     extend: {
       fontFamily: {
-        sans: ['var(--font-inter)'],
+        sans: ['Metropolis_Light', 'var(--font-inter)'],
       },
       keyframes: {
         revealVertical: {

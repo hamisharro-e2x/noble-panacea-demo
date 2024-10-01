@@ -1,5 +1,6 @@
-import { ChevronDown, LogOut, ShoppingCart, User } from 'lucide-react';
-import { ReactNode, Suspense } from 'react';
+import { ChevronDown, LogOut, ShoppingBag, UserRound } from 'lucide-react';
+import React, { ReactNode, Suspense } from 'react';
+import { CircleFlag } from 'react-circle-flags';
 
 import { Button } from '@bigcommerce/components/button';
 import {
@@ -19,6 +20,13 @@ import { cn } from '~/lib/utils';
 
 import { QuickSearch } from '../quick-search';
 import { StoreLogo } from '../store-logo';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNextIndicator,
+  CarouselPreviousIndicator,
+} from '../ui/carousel';
 
 import { logout } from './_actions/logout';
 import { CartLink } from './cart';
@@ -36,9 +44,10 @@ const HeaderNav = async ({
   const categoryTree = (await getCategoryTree()).slice(0, 6);
 
   return (
-    <>
+    <div className="w-full bg-gray-100">
       <NavigationMenuList
         className={cn(
+          'justify-center font-light 2xl:container sm:px-10 lg:gap-8 lg:px-12 2xl:mx-auto 2xl:px-0',
           !inCollapsedNav && 'lg:gap-4',
           inCollapsedNav && 'flex-col items-start pb-6',
           className,
@@ -49,19 +58,11 @@ const HeaderNav = async ({
             {category.children.length > 0 ? (
               <>
                 <NavigationMenuTrigger className="gap-0 p-0">
-                  <>
-                    <NavigationMenuLink asChild>
-                      <Link className="grow" href={category.path}>
-                        {category.name}
-                      </Link>
-                    </NavigationMenuLink>
-                    <span className={cn(inCollapsedNav && 'p-3')}>
-                      <ChevronDown
-                        aria-hidden="true"
-                        className="cursor-pointer transition duration-200 group-data-[state=open]/button:-rotate-180"
-                      />
-                    </span>
-                  </>
+                  <NavigationMenuLink asChild>
+                    <Link className="grow text-sm uppercase 2xl:text-xl" href={category.path}>
+                      {category.name}
+                    </Link>
+                  </NavigationMenuLink>
                 </NavigationMenuTrigger>
                 <NavigationMenuContent
                   className={cn(
@@ -78,7 +79,7 @@ const HeaderNav = async ({
                       </NavigationMenuItem>
                       {childCategory1.children.map((childCategory2) => (
                         <NavigationMenuItem key={childCategory2.entityId}>
-                          <NavigationMenuLink className="font-normal" href={childCategory2.path}>
+                          <NavigationMenuLink href={childCategory2.path}>
                             {childCategory2.name}
                           </NavigationMenuLink>
                         </NavigationMenuItem>
@@ -89,13 +90,15 @@ const HeaderNav = async ({
               </>
             ) : (
               <NavigationMenuLink asChild>
-                <Link href={category.path}>{category.name}</Link>
+                <Link className="text-sm uppercase 2xl:text-xl" href={category.path}>
+                  {category.name}
+                </Link>
               </NavigationMenuLink>
             )}
           </NavigationMenuItem>
         ))}
         <NavigationMenuItem>
-          <Link className="flex" href="/blog-filter">
+          <Link className="flex text-sm font-light uppercase 2xl:text-xl" href="/blog-filter">
             Amplience Blog
           </Link>
         </NavigationMenuItem>
@@ -104,12 +107,12 @@ const HeaderNav = async ({
         <NavigationMenuList className="flex-col items-start border-t border-gray-200 pt-6 lg:hidden">
           <NavigationMenuItem className="w-full">
             <NavigationMenuLink href="/login">
-              Your Account <User />
+              Your Account <UserRound />
             </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
       )}
-    </>
+    </div>
   );
 };
 
@@ -118,56 +121,89 @@ export const Header = async ({ cart }: { cart: ReactNode }) => {
 
   return (
     <header>
-      <NavigationMenu>
-        <NavigationMenuLink asChild className="shrink-0 px-0">
-          <Link href="/">
-            <StoreLogo />
-          </Link>
-        </NavigationMenuLink>
-        <HeaderNav className="hidden lg:flex" />
-        <div className="flex">
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <QuickSearch>
-                <Link className="flex" href="/">
-                  <StoreLogo />
-                </Link>
-              </QuickSearch>
-            </NavigationMenuItem>
-            <NavigationMenuItem className="hidden lg:flex">
-              {customerId ? (
-                <form action={logout}>
-                  <Button
-                    className="p-3 text-black hover:bg-transparent"
-                    type="submit"
-                    variant="subtle"
-                  >
-                    <LogOut />
-                  </Button>
-                </form>
-              ) : (
-                <NavigationMenuLink asChild>
-                  <Link aria-label="Login" href="/login">
-                    <User />
-                  </Link>
-                </NavigationMenuLink>
-              )}
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <p role="status">
-                <Suspense
-                  fallback={
-                    <CartLink>
-                      <ShoppingCart aria-label="cart" />
-                    </CartLink>
-                  }
-                >
-                  {cart}
-                </Suspense>
-              </p>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-          <NavigationMenuToggle className="ms-2 lg:hidden" />
+      <div className="w-full bg-gray-100 text-black">
+        <Carousel className="flex items-center justify-center 2xl:container sm:px-10 lg:gap-8 lg:px-12 2xl:mx-auto 2xl:px-0 2xl:py-10">
+          <CarouselPreviousIndicator className="hidden size-5 lg:flex" />
+          <CarouselContent className="m-0 my-2 lg:mt-2 2xl:my-4">
+            {[
+              'Free dose of Overnight Chronobiology Peel (£35 value) when you spend +£250',
+              'Complimentary shipping & samples on every order.',
+              'New: Auto-replenish your favourite refills',
+            ].map((promotion, index) => (
+              <CarouselItem className="grid-cols-1 md:grid-cols-1" index={index} key={promotion}>
+                <div className="flex items-center justify-center">
+                  <p className="text-center text-xs font-light">{promotion}</p>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselNextIndicator className="hidden size-5 lg:flex" />
+        </Carousel>
+      </div>
+      <NavigationMenu className="border-b">
+        <div className="w-full">
+          <div className="flex items-center justify-between py-2 font-light 2xl:container sm:px-10 lg:gap-8 lg:px-12 2xl:mx-auto 2xl:px-0 2xl:py-10">
+            <div className="flex items-center space-x-4 text-xs 2xl:text-sm">
+              <a href="/shipping-returns/">Store &amp; Treatments</a>
+              <span>|</span>
+              <div className="flex cursor-pointer items-center">
+                <CircleFlag className="h-5 pr-2" countryCode="gb" />
+                <p>UK | EN</p>
+                <ChevronDown aria-hidden="true" className="stroke-1" />
+              </div>
+            </div>
+            <NavigationMenuLink asChild className="shrink-0 p-0">
+              <Link href="/">
+                <StoreLogo />
+              </Link>
+            </NavigationMenuLink>
+            <div className="flex">
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <QuickSearch>
+                    <Link className="flex" href="/">
+                      <StoreLogo />
+                    </Link>
+                  </QuickSearch>
+                </NavigationMenuItem>
+                <NavigationMenuItem className="hidden lg:flex">
+                  {customerId ? (
+                    <form action={logout}>
+                      <Button
+                        className="p-3 text-black hover:bg-transparent"
+                        type="submit"
+                        variant="subtle"
+                      >
+                        <LogOut />
+                      </Button>
+                    </form>
+                  ) : (
+                    <NavigationMenuLink asChild>
+                      <Link aria-label="Login" href="/login">
+                        <UserRound />
+                      </Link>
+                    </NavigationMenuLink>
+                  )}
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <p role="status">
+                    <Suspense
+                      fallback={
+                        <CartLink>
+                          <ShoppingBag aria-label="cart" />
+                        </CartLink>
+                      }
+                    >
+                      {cart}
+                    </Suspense>
+                  </p>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+              <NavigationMenuToggle className="ms-2 lg:hidden" />
+            </div>
+          </div>
+
+          <HeaderNav className="hidden lg:flex" />
         </div>
         <NavigationMenuCollapsed>
           <HeaderNav inCollapsedNav />
