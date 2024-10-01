@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, Suspense } from 'react';
 
 import DynamicProductGrid from '~/components/amplience/dynamic-product-grid/dynamic-product-grid';
-import AwardCarousel from '~/components/award-carousel';
+import ContentCarousel from '~/components/award-carousel';
 import ContentBlock from '~/components/content-block';
 import { Footer } from '~/components/footer/footer';
 import { Header } from '~/components/header';
@@ -65,7 +65,21 @@ export default function DefaultLayout({ children }: PropsWithChildren) {
             },
           }}
         />
-        <AwardCarousel />
+        <ContentCarousel
+          images={[
+            'https://applytrial.a.bigcontent.io/v1/static/Untitled design (9)',
+            'https://applytrial.a.bigcontent.io/v1/static/Untitled design (8)',
+            'https://applytrial.a.bigcontent.io/v1/static/Untitled design (4)',
+            'https://applytrial.a.bigcontent.io/v1/static/Untitled design (2)',
+            'https://applytrial.a.bigcontent.io/v1/static/Untitled design (5)',
+            'https://applytrial.a.bigcontent.io/v1/static/Untitled design (11)',
+            'https://applytrial.a.bigcontent.io/v1/static/Untitled design (10)',
+            'https://applytrial.a.bigcontent.io/v1/static/Untitled design (3)',
+            'https://applytrial.a.bigcontent.io/v1/static/Untitled design (7)',
+            'https://applytrial.a.bigcontent.io/v1/static/Untitled design (6)',
+          ]}
+          title="our awards"
+        />
         <VideoShowcase
           {...{
             videoId: 'uutvm6c2yo',
@@ -83,6 +97,21 @@ export default function DefaultLayout({ children }: PropsWithChildren) {
           backgroundImage="https://applytrial.a.bigcontent.io/v1/static/Laboratory_Footer"
           content="<span>CRUELTY-FREE, GLUTEN-FREE, AND FRAGRANCE FREE. <br> Free of parabens, silicones, mineral oil, phthalates, petrolatum, formaldehyde, cocamide DEA, propylene glycol, triclosan, myristyl myristate,  GMOs, nitrates, SLS &amp; SLES, artificial colorants, synthetic fragrances, essential oils, paraffin, alcohol, ingredients of animal origin, PEG, and EDTA.</span>"
           title="Our Ingredient Integrity"
+        />
+        <ContentCarousel
+          className="bg-black text-white"
+          description="<span>Discover authentic natural beauty empowered by a new era in breakthrough science skincare.</span>"
+          images={[
+            'https://applytrial.a.bigcontent.io/v1/static/440857363_488274316855571_4267319130627289715_n',
+            'https://applytrial.a.bigcontent.io/v1/static/440849432_454791100261999_5915226278047597079_n',
+            'https://applytrial.a.bigcontent.io/v1/static/437473411_446370577963364_9180543844019891543_n',
+            'https://applytrial.a.bigcontent.io/v1/static/446508020_416494174694545_7786901077942173167_n',
+            'https://applytrial.a.bigcontent.io/v1/static/439175046_1197673061610168_513510427695184318_n',
+            'https://applytrial.a.bigcontent.io/v1/static/441569805_914947920429928_490720246200449182_n',
+            'https://applytrial.a.bigcontent.io/v1/static/443265599_417037001130768_2766103955332547747_n',
+            'https://applytrial.a.bigcontent.io/v1/static/447066641_3827669654132939_6003317168113244442_n',
+          ]}
+          title="#ThinkBeautifully"
         />
         {children}
       </main>
