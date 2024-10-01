@@ -6,11 +6,12 @@ import { Product } from '~/components/product-card';
 import { ProductCardCarousel } from '~/components/product-card-carousel';
 
 interface DynamicProductGridProps {
-  limit: number;
+  limit?: number;
   category: string;
+  title?: string;
 }
 
-const DynamicProductGrid = ({ limit = 10, category }: DynamicProductGridProps) => {
+const DynamicProductGrid = ({ limit = 10, category, title = '' }: DynamicProductGridProps) => {
   const [hydratedProducts, setHydratedProducts] = useState<Array<Partial<Product>>>([]);
 
   useEffect(() => {
@@ -31,10 +32,11 @@ const DynamicProductGrid = ({ limit = 10, category }: DynamicProductGridProps) =
   return (
     <ProductCardCarousel
       products={hydratedProducts}
+      showBrand={false}
       showCart={false}
       showCompare={false}
       showReviews={false}
-      title=""
+      title={title}
     />
   );
 };

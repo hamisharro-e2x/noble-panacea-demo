@@ -11,41 +11,22 @@ import {
   CarouselPreviousIndicator,
 } from '../ui/carousel';
 
-const heroContent = [
-  {
-    eyeBrow: '<p>NEW<br>The Exceptional<sup>NP</sup> Eye Lift Concentrate&ZeroWidthSpace;</p>',
-    title: 'Open your eyes to the future.',
-    subtitle: 'Instant lift, lasting firmness​.',
-    imageUrl: 'https://applytrial.a.bigcontent.io/v1/static/Untitled design (12)',
-    ctaButton: {
-      text: 'LEARN MORE',
-      url: '/#',
-    },
-  },
-  {
-    eyeBrow: 'Available in Cream SPF 50 &amp; Lotion SPF 30',
-    title: 'MULTI-DEFENCE',
-    subtitle: 'An on-the-go high performance protection, prevention and correction system. ​',
-    imageUrl: 'https://applytrial.a.bigcontent.io/v1/static/Untitled design (14)',
-    ctaButton: {
-      text: 'DISCOVER MORE',
-      url: '/#',
-    },
-  },
-  {
-    title: 'Post-Summer Skin',
-    eyeBrow: 'Available in Cream SPF 50 & Lotion SPF 30',
-    subtitle:
-      'After a summer filled with sun, sand, and travel, your skin deserves a little extra TLC. Discover our treatments to restore and rejuvenate your skin.',
-    imageUrl: 'https://applytrial.a.bigcontent.io/v1/static/Untitled design (13)',
-    ctaButton: {
-      text: 'SHOP NOW',
-      url: '/#',
-    },
-  },
-];
+interface HeroBannerContent {
+  eyeBrow: string;
+  title: string;
+  subtitle: string;
+  imageUrl: string;
+  ctaButton: {
+    text: string;
+    url: string;
+  };
+}
 
-function HeroBanner() {
+interface HeroBannerProps {
+  heroContent: HeroBannerContent[];
+}
+
+function HeroBanner({ heroContent }: HeroBannerProps) {
   return (
     <Carousel className="relative mx-0 stroke-white px-0 text-white">
       <CarouselContent className="m-0 my-0 lg:mt-0 2xl:my-0">

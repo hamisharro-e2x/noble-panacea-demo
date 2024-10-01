@@ -18,12 +18,14 @@ export const ProductCardCarousel = ({
   showCart = true,
   showCompare = true,
   showReviews = true,
+  showBrand = true,
 }: {
   title: string;
   products: Array<Partial<Product>>;
   showCart?: boolean;
   showCompare?: boolean;
   showReviews?: boolean;
+  showBrand?: boolean;
 }) => {
   const id = useId();
 
@@ -48,7 +50,7 @@ export const ProductCardCarousel = ({
   return (
     <Carousel aria-labelledby="title" className="mb-14" opts={{ loop: true }}>
       <div className="flex items-center justify-between">
-        <h2 className="text-3xl font-black lg:text-4xl" id="title">
+        <h2 className="text-lg font-light uppercase lg:text-2xl" id="title">
           {title}
         </h2>
         <span className="no-wrap flex">
@@ -69,6 +71,7 @@ export const ProductCardCarousel = ({
                 imageSize="tall"
                 key={product.entityId}
                 product={product}
+                showBrand={showBrand}
                 showCart={showCart}
                 showCompare={showCompare}
                 showReviews={showReviews}

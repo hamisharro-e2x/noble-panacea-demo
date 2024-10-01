@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useId } from 'react';
+import React, { useId } from 'react';
 
 import {
   ProductCard as ComponentsProductCard,
@@ -30,6 +30,8 @@ export interface Product {
     name: string;
     path: string;
   } | null;
+  description?: string;
+  categories: { edges: { node: Array<{ name: string; path: string }> } };
   prices?: {
     price?: {
       value?: number;
@@ -74,6 +76,7 @@ interface ProductCardProps {
   showCart?: boolean;
   showCompare?: boolean;
   showReviews?: boolean;
+  showBrand?: boolean;
 }
 
 export const ProductCard = ({
@@ -83,8 +86,14 @@ export const ProductCard = ({
   showCart = true,
   showCompare = true,
   showReviews = true,
+  showBrand = true,
 }: ProductCardProps) => {
   const summaryId = useId();
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/consistent-type-assertions
+  const category = product.categories.edges[1].node as { name: string; path: string } | undefined;
 
   if (!product.entityId) {
     return null;
@@ -114,9 +123,12 @@ export const ProductCard = ({
           )}
         </div>
       </ProductCardImage>
-      <ProductCardInfo className={cn(showCart && 'justify-end')}>
-        {product.brand && <ProductCardInfoBrandName>{product.brand.name}</ProductCardInfoBrandName>}
-        <ProductCardInfoProductName>
+      <ProductCardInfo className={cn('text-center font-light', showCart && 'justify-end')}>
+        {showBrand && product.brand && (
+          <ProductCardInfoBrandName>{product.brand.name}</ProductCardInfoBrandName>
+        )}
+        {category && <p>{category.name}</p>}
+        <ProductCardInfoProductName className="font-light">
           {product.path ? (
             <Link
               className="focus:outline focus:outline-4 focus:outline-offset-2 focus:outline-blue-primary/20 focus:ring-0"
@@ -129,6 +141,9 @@ export const ProductCard = ({
             product.name
           )}
         </ProductCardInfoProductName>
+        {typeof product.description === 'string' && (
+          <p className="text-sm" dangerouslySetInnerHTML={{ __html: product.description }} />
+        )}
         {product.reviewSummary && showReviews && (
           <div className="flex items-center gap-3">
             <p
@@ -154,8 +169,8 @@ export const ProductCard = ({
             </div>
           </div>
         )}
-        <div className="flex flex-wrap items-end justify-between pt-1">
-          <ProductCardInfoPrice>
+        <div className="flex flex-wrap items-end justify-center pt-1">
+          <ProductCardInfoPrice className="text-2xl font-semibold">
             <Pricing prices={product.prices} />
           </ProductCardInfoPrice>
           {showCompare && (

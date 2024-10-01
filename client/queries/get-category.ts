@@ -32,6 +32,15 @@ export const GET_CATEGORY_QUERY = /* GraphQL */ `
               brand {
                 name
               }
+              description
+              categories {
+                edges {
+                  node {
+                    name
+                    path
+                  }
+                }
+              }
               ...Prices
               defaultImage {
                 url(width: 300)
