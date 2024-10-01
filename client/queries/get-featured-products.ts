@@ -44,6 +44,7 @@ export const getFeaturedProducts = cache(
 
     return removeEdgesAndNodes(site.featuredProducts).map((featuredProduct) => ({
       ...featuredProduct,
+      categories: removeEdgesAndNodes(featuredProduct.categories),
       productOptions: removeEdgesAndNodes(featuredProduct.productOptions),
     }));
   },

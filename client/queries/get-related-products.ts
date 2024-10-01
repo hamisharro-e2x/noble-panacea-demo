@@ -59,6 +59,7 @@ export const getRelatedProducts = cache(
 
     return removeEdgesAndNodes(product.relatedProducts).map((relatedProduct) => ({
       ...relatedProduct,
+      categories: removeEdgesAndNodes(relatedProduct.categories),
       productOptions: removeEdgesAndNodes(relatedProduct.productOptions),
     }));
   },

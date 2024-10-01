@@ -93,11 +93,16 @@ export const getCategory = cache(
       return undefined;
     }
 
+    const items = removeEdgesAndNodes(category.products).map((product) => ({
+      ...product,
+      categories: removeEdgesAndNodes(product.categories),
+    }));
+
     return {
       ...category,
       products: {
         pageInfo: category.products.pageInfo,
-        items: removeEdgesAndNodes(category.products),
+        items,
       },
       breadcrumbs: {
         items: removeEdgesAndNodes(category.breadcrumbs),

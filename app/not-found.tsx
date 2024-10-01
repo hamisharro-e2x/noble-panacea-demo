@@ -1,4 +1,5 @@
 import { ShoppingCart } from 'lucide-react';
+import React from 'react';
 
 import { Message } from '@bigcommerce/components/message';
 import { getFeaturedProducts } from '~/client/queries/get-featured-products';

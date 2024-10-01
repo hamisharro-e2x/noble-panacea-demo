@@ -241,7 +241,7 @@ const getInternalProduct = async (productId: number, optionValueIds?: OptionValu
   return product;
 };
 
-const reshapeProductCategories = (product: Product) => {
+export const reshapeProductCategories = (product: Product) => {
   const categories = removeEdgesAndNodes(product.categories);
 
   if (!categories.length) {

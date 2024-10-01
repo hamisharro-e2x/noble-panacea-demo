@@ -31,7 +31,7 @@ export interface Product {
     path: string;
   } | null;
   description?: string;
-  categories: { edges: { node: Array<{ name: string; path: string }> } };
+  categories?: Array<{ name: string; path: string }>;
   prices?: {
     price?: {
       value?: number;
@@ -89,11 +89,7 @@ export const ProductCard = ({
   showBrand = true,
 }: ProductCardProps) => {
   const summaryId = useId();
-
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/consistent-type-assertions
-  const category = product.categories.edges[1].node as { name: string; path: string } | undefined;
+  const category = product.categories?.[1];
 
   if (!product.entityId) {
     return null;
