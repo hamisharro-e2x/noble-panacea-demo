@@ -1,26 +1,12 @@
 import Image from 'next/image';
 
-import { getStoreSettings } from '~/client/queries/get-store-settings';
-
-export const StoreLogo = async () => {
-  const settings = await getStoreSettings();
-
-  if (!settings) {
-    return null;
-  }
-
-  const { logoV2: logo, storeName } = settings;
-
-  if (logo.__typename === 'StoreTextLogo') {
-    return <span className="text-2xl font-black">{logo.text}</span>;
-  }
-
+export const StoreLogo = () => {
   return (
     <Image
-      alt={logo.image.altText ? logo.image.altText : storeName}
+      alt="Noble Panacea store logo"
       height={26}
       priority
-      src={logo.image.url}
+      src="https://applytrial.a.bigcontent.io/v1/static/logo_1"
       width={307}
     />
   );

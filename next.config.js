@@ -15,6 +15,9 @@ const nextConfig = {
       {
         hostname: process.env.BIGCOMMERCE_CDN_HOSTNAME ?? '*.bigcommerce.com',
       },
+      {
+        hostname: 'applytrial.a.bigcontent.io',
+      },
     ],
   },
   transpilePackages: ['@bigcommerce/components'],

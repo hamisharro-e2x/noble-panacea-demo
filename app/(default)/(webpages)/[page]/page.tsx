@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import React from 'react';
 
 import { getReCaptchaSettings } from '~/client/queries/get-recaptcha-settings';
 import { getWebPage } from '~/client/queries/get-web-page';

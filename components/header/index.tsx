@@ -122,8 +122,11 @@ export const Header = async ({ cart }: { cart: ReactNode }) => {
   return (
     <header>
       <div className="w-full bg-gray-100 text-black">
-        <Carousel className="flex items-center justify-center 2xl:container sm:px-10 lg:gap-8 lg:px-12 2xl:mx-auto 2xl:px-0 2xl:py-10">
-          <CarouselPreviousIndicator className="hidden size-5 lg:flex" />
+        <Carousel
+          className="flex items-center justify-center 2xl:container sm:px-10 lg:gap-8 lg:px-12 2xl:mx-auto 2xl:px-0"
+          opts={{ loop: true }}
+        >
+          <CarouselPreviousIndicator className="hidden size-4 lg:flex 2xl:size-5" />
           <CarouselContent className="m-0 my-2 lg:mt-2 2xl:my-4">
             {[
               'Free dose of Overnight Chronobiology Peel (£35 value) when you spend +£250',
@@ -137,7 +140,7 @@ export const Header = async ({ cart }: { cart: ReactNode }) => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselNextIndicator className="hidden size-5 lg:flex" />
+          <CarouselNextIndicator className="hidden size-4 lg:flex 2xl:size-5" />
         </Carousel>
       </div>
       <NavigationMenu className="border-b">
