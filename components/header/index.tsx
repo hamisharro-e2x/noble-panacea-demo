@@ -116,55 +116,68 @@ const HeaderNav = async ({
   );
 };
 
+function PromoBanner() {
+  return (
+    <div className="w-full bg-gray-100 text-black">
+      <Carousel
+        className="flex items-center justify-center 2xl:container sm:px-10 lg:gap-8 lg:px-12 2xl:mx-auto 2xl:px-0"
+        opts={{ loop: true }}
+      >
+        <div className="pl-2">
+          <CarouselPreviousIndicator className="hidden size-4 lg:flex 2xl:size-5" />
+        </div>
+        <CarouselContent className="m-0 my-2 lg:mt-2 2xl:my-4">
+          {[
+            'Free dose of Overnight Chronobiology Peel (£35 value) when you spend +£250',
+            'Complimentary shipping & samples on every order.',
+            'New: Auto-replenish your favourite refills',
+          ].map((promotion, index) => (
+            <CarouselItem className="grid-cols-1 md:grid-cols-1" index={index} key={promotion}>
+              <div className="flex items-center justify-center">
+                <p className="text-center text-xs font-light">{promotion}</p>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <div className="pr-2">
+          <CarouselNextIndicator className="hidden size-4 lg:flex 2xl:size-5" />
+        </div>
+      </Carousel>
+    </div>
+  );
+}
+
+function LocaleSelector() {
+  return (
+    <div className="hidden items-center space-x-4 pl-2 text-xs lg:flex 2xl:text-sm">
+      <a href="/shipping-returns/">Store &amp; Treatments</a>
+      <span>|</span>
+      <div className="flex cursor-pointer items-center">
+        <CircleFlag className="h-5 pr-2" countryCode="gb" />
+        <p>UK | EN</p>
+        <ChevronDown aria-hidden="true" className="stroke-1" />
+      </div>
+    </div>
+  );
+}
+
 export const Header = async ({ cart }: { cart: ReactNode }) => {
   const customerId = await getSessionCustomerId();
 
   return (
     <header>
-      <div className="w-full bg-gray-100 text-black">
-        <Carousel
-          className="flex items-center justify-center 2xl:container sm:px-10 lg:gap-8 lg:px-12 2xl:mx-auto 2xl:px-0"
-          opts={{ loop: true }}
-        >
-          <div className="pl-2">
-            <CarouselPreviousIndicator className="hidden size-4 lg:flex 2xl:size-5" />
-          </div>
-          <CarouselContent className="m-0 my-2 lg:mt-2 2xl:my-4">
-            {[
-              'Free dose of Overnight Chronobiology Peel (£35 value) when you spend +£250',
-              'Complimentary shipping & samples on every order.',
-              'New: Auto-replenish your favourite refills',
-            ].map((promotion, index) => (
-              <CarouselItem className="grid-cols-1 md:grid-cols-1" index={index} key={promotion}>
-                <div className="flex items-center justify-center">
-                  <p className="text-center text-xs font-light">{promotion}</p>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <div className="pr-2">
-            <CarouselNextIndicator className="hidden size-4 lg:flex 2xl:size-5" />
-          </div>
-        </Carousel>
-      </div>
+      <PromoBanner />
       <NavigationMenu className="border-b">
         <div className="w-full">
-          <div className="flex items-center justify-between py-2 font-light 2xl:container sm:px-10 lg:gap-8 lg:px-12 2xl:mx-auto 2xl:px-0 2xl:py-10">
-            <div className="hidden items-center space-x-4 pl-2 text-xs lg:flex 2xl:text-sm">
-              <a href="/shipping-returns/">Store &amp; Treatments</a>
-              <span>|</span>
-              <div className="flex cursor-pointer items-center">
-                <CircleFlag className="h-5 pr-2" countryCode="gb" />
-                <p>UK | EN</p>
-                <ChevronDown aria-hidden="true" className="stroke-1" />
-              </div>
-            </div>
-            <NavigationMenuLink asChild className="shrink-0 p-0">
+          <div className="grid grid-cols-3 items-center justify-between py-2 font-light 2xl:container sm:px-10 lg:gap-8 lg:px-12 2xl:mx-auto 2xl:px-0 2xl:py-10">
+            <LocaleSelector />
+            <NavigationMenuToggle className="ms-2 lg:hidden" />
+            <NavigationMenuLink asChild className="shrink-0 justify-center p-0">
               <Link href="/">
                 <StoreLogo />
               </Link>
             </NavigationMenuLink>
-            <div className="flex">
+            <div className="flex justify-end">
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <QuickSearch>
@@ -206,7 +219,6 @@ export const Header = async ({ cart }: { cart: ReactNode }) => {
                   </p>
                 </NavigationMenuItem>
               </NavigationMenuList>
-              <NavigationMenuToggle className="ms-2 lg:hidden" />
             </div>
           </div>
 
