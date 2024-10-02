@@ -13,7 +13,7 @@ class AmplienceClient {
     this.client = new ContentClient({
       hubName: hubName || String(process.env.AMPLIENCE_HUBNAME),
       stagingEnvironment: stagingEnvironment || '',
-      locale,
+      locale: locale || 'en-US',
       adaptor: fetchAdapter,
     });
   }

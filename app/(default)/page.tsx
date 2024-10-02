@@ -4,8 +4,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
 
-import { DefaultContentBody } from 'dc-delivery-sdk-js';
 import { ReadonlyURLSearchParams } from 'next/navigation';
+import React from 'react';
 
 import { createAmplienceClient } from '~/amplience-client';
 import { clientOptionsMapper } from '~/amplience-client/mappers/client-options-mapper';
@@ -17,28 +17,35 @@ export interface HomeProps {
   searchParams: ReadonlyURLSearchParams;
 }
 
-interface FlexibleSlot extends DefaultContentBody {
-  slots: Array<{ id: string }>;
-}
+export async function generateMetadata({ searchParams }: HomeProps) {
+  const amplienceClient = createAmplienceClient(clientOptionsMapper(searchParams));
 
-interface Slot extends DefaultContentBody {
-  content: DefaultContentBody;
+  try {
+    const response = await amplienceClient.getContentItemByKey(HOMEPAGE_DELIVERY_KEY);
+
+    const page = response.toJSON().contentPage;
+
+    return {
+      title: page.pageTitle,
+      description: page.pageDescription,
+    };
+  } catch (e) {
+    console.error(`Unable to load content item by key for metadata: ${HOMEPAGE_DELIVERY_KEY}`);
+  }
 }
 
 export default async function Home({ searchParams }: HomeProps) {
   const amplienceClient = createAmplienceClient(clientOptionsMapper(searchParams));
 
   try {
-    const flexibleSlot = (
-      await amplienceClient.getContentItemByKey(HOMEPAGE_DELIVERY_KEY)
-    ).toJSON() as FlexibleSlot;
-    const allItemIds: string[] = flexibleSlot.slots.map((slot) => slot.id);
-    const allItems = await amplienceClient.getContentItemsById<Slot>(allItemIds);
+    const response = await amplienceClient.getContentItemByKey(HOMEPAGE_DELIVERY_KEY);
+
+    const items = response.toJSON().contentPage.content as any[];
 
     return (
       <>
-        {allItems.responses.map((item: any, index: number) => {
-          return <AmplienceContent content={item.content} key={index} />;
+        {items.map((item, index: number) => {
+          return <AmplienceContent content={item} key={index} />;
         })}
       </>
     );

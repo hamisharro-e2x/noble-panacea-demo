@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { DefaultContentBody } from 'dc-delivery-sdk-js';
 
+import ContentBlock from '../../content-block';
 import Blog from '../blog/blog';
 import BlogSnippet from '../blog-snippet/blog-snippet';
 import Card from '../card/card';
@@ -29,6 +30,7 @@ const COMPONENT_MAPPING: ComponentMapType = {
   'https://demostore.amplience.com/content/rich-text': RichText,
   'https://demostore.amplience.com/content/blog': Blog,
   'https://demostore.amplience.com/content/blog-snippet': BlogSnippet,
+  'https://noble-panacea-demo.vercel.app/content/content-block': ContentBlock,
 };
 
 const MappingNotFound = (content: DefaultContentBody) => {

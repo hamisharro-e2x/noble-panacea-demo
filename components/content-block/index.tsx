@@ -1,25 +1,28 @@
 import Image from 'next/image';
 
+import { AmplienceImage } from '../amplience/image/image.types';
+import Markdown from '../markdown';
+
 interface ContentBlockProps {
   title: string;
   content: string;
-  backgroundImage: string;
+  image: AmplienceImage;
+  imageAltText: string;
 }
 
-function ContentBlock({ title, content, backgroundImage }: ContentBlockProps) {
+function ContentBlock({ content, image, imageAltText }: ContentBlockProps) {
   return (
     <div className="relative w-full">
       <Image
-        alt="Content block image"
+        alt={imageAltText}
         className="absolute -z-10 object-cover"
         fill
         priority
         sizes="(max-width: 1536px) 100vw, 1536px"
-        src={backgroundImage}
+        src={`https://${image.endpoint}.a.bigcontent.io/v1/static/${image.name}`}
       />
-      <div className="flex flex-col gap-5 px-12 py-20 text-center font-light">
-        <h1 className="text-3xl uppercase">{title}</h1>
-        <p className="text-lg" dangerouslySetInnerHTML={{ __html: content }} />
+      <div className="flex flex-col gap-5 px-12 py-20 text-center">
+        <Markdown content={content} />
       </div>
     </div>
   );
