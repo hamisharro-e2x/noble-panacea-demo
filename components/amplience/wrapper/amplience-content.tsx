@@ -4,6 +4,7 @@
 import { DefaultContentBody } from 'dc-delivery-sdk-js';
 
 import ContentBlock from '../../content-block';
+import HeroBanner from '../../hero-banner';
 import Blog from '../blog/blog';
 import BlogSnippet from '../blog-snippet/blog-snippet';
 import Card from '../card/card';
@@ -24,13 +25,14 @@ const COMPONENT_MAPPING: ComponentMapType = {
   'https://demostore.amplience.com/content/simple-banner': SimpleBanner,
   'https://demostore.amplience.com/slots/flexible': FlexibleSlot,
   'https://demostore.amplience.com/content/curated-product-grid': CuratedProductGrid,
-  'https://demostore.amplience.com/content/product-grid': DynamicProductGrid,
   'https://demostore.amplience.com/content/card': Card,
   'https://demostore.amplience.com/content/card-list': CardList,
   'https://demostore.amplience.com/content/rich-text': RichText,
   'https://demostore.amplience.com/content/blog': Blog,
   'https://demostore.amplience.com/content/blog-snippet': BlogSnippet,
   'https://noble-panacea-demo.vercel.app/content/content-block': ContentBlock,
+  'https://noble-panacea-demo.vercel.app/content/hero-banner': HeroBanner,
+  'https://noble-panacea-demo.vercel.app/content/dynamic-product-carousel': DynamicProductGrid,
 };
 
 const MappingNotFound = (content: DefaultContentBody) => {

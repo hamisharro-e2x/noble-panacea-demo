@@ -4,7 +4,6 @@ import { AmplienceImage } from '../amplience/image/image.types';
 import Markdown from '../markdown';
 
 interface ContentBlockProps {
-  title: string;
   content: string;
   image: AmplienceImage;
   imageAltText: string;
