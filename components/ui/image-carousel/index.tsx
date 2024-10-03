@@ -17,7 +17,7 @@ function ImageCarousel({ images }: ImageCarouselProps) {
       <div className="px-2">
         <CarouselPreviousIndicator className="z-10 hidden size-4 lg:flex 2xl:size-5" />
       </div>
-      <CarouselContent className="z-0 m-0 my-2 lg:mt-2 2xl:my-4">
+      <CarouselContent className="z-0 m-0 mt-0 lg:mt-2">
         {images.map(({ alt, src }) => (
           <Image alt={alt} height={300} key={src} src={src} width={300} />
         ))}
