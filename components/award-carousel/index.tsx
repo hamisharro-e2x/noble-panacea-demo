@@ -18,7 +18,7 @@ function ContentCarousel({ content, images, className, isDark }: ContentCarousel
   return (
     <div
       className={cn(
-        'relative flex flex-col items-center justify-center space-y-8 pt-8 text-center',
+        'relative flex flex-col items-center justify-center space-y-4 pt-8 text-center',
         isDark && 'bg-black text-white',
         className,
       )}
