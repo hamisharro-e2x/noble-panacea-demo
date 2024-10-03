@@ -34,6 +34,8 @@ export async function generateMetadata({ searchParams }: HomeProps) {
   }
 }
 
+// .filter((item) => !!season || !item.season || item.season === season)
+
 export default async function Home({ searchParams }: HomeProps) {
   const amplienceClient = createAmplienceClient(clientOptionsMapper(searchParams));
 

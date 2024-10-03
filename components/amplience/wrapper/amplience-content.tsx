@@ -3,36 +3,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { DefaultContentBody } from 'dc-delivery-sdk-js';
 
+import ContentCarousel from '../../award-carousel';
 import ContentBlock from '../../content-block';
 import HeroBanner from '../../hero-banner';
-import Blog from '../blog/blog';
-import BlogSnippet from '../blog-snippet/blog-snippet';
-import Card from '../card/card';
-import CardList from '../card-list/card-list';
-import CuratedProductGrid from '../curated-product-grid/curated-product-grid';
+import VideoShowcase from '../../video-showcase';
 import DynamicProductGrid from '../dynamic-product-grid/dynamic-product-grid';
-import FlexibleSlot from '../flexible-slot/flexible-slot';
-import Image from '../image/image';
-import RichText from '../rich-text/rich-text';
-import SimpleBanner from '../simple-banner/simple-banner';
-import Text from '../text/text';
 
 type ComponentMapType = Record<string, (...args: any) => any>;
 
 const COMPONENT_MAPPING: ComponentMapType = {
-  'https://demostore.amplience.com/content/image': Image,
-  'https://demostore.amplience.com/content/text': Text,
-  'https://demostore.amplience.com/content/simple-banner': SimpleBanner,
-  'https://demostore.amplience.com/slots/flexible': FlexibleSlot,
-  'https://demostore.amplience.com/content/curated-product-grid': CuratedProductGrid,
-  'https://demostore.amplience.com/content/card': Card,
-  'https://demostore.amplience.com/content/card-list': CardList,
-  'https://demostore.amplience.com/content/rich-text': RichText,
-  'https://demostore.amplience.com/content/blog': Blog,
-  'https://demostore.amplience.com/content/blog-snippet': BlogSnippet,
   'https://noble-panacea-demo.vercel.app/content/content-block': ContentBlock,
   'https://noble-panacea-demo.vercel.app/content/hero-banner': HeroBanner,
   'https://noble-panacea-demo.vercel.app/content/dynamic-product-carousel': DynamicProductGrid,
+  'https://noble-panacea-demo.vercel.app/content/image-carousel': ContentCarousel,
+  'https://noble-panacea-demo.vercel.app/content/video-block': VideoShowcase,
 };
 
 const MappingNotFound = (content: DefaultContentBody) => {
