@@ -4,7 +4,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
 
-import { ReadonlyURLSearchParams } from 'next/navigation';
 import React from 'react';
 
 import { createAmplienceClient } from '~/amplience-client';
@@ -14,7 +13,7 @@ import AmplienceContent from '~/components/amplience/wrapper/amplience-content';
 const HOMEPAGE_DELIVERY_KEY = String(process.env.AMPLIENCE_HOMEPAGE_DELIVERY_KEY);
 
 export interface HomeProps {
-  searchParams: ReadonlyURLSearchParams;
+  searchParams: { locale: string; season: string; hubName: string; stagingEnvironment: string };
 }
 
 export async function generateMetadata({ searchParams }: HomeProps) {
@@ -46,9 +45,13 @@ export default async function Home({ searchParams }: HomeProps) {
 
     return (
       <>
-        {items.map((item, index: number) => {
-          return <AmplienceContent content={item} key={index} />;
-        })}
+        {items
+          .filter(
+            (item) => !searchParams.season || !item.season || item.season === searchParams.season,
+          )
+          .map((item, index: number) => {
+            return <AmplienceContent content={item} key={index} />;
+          })}
       </>
     );
   } catch (e) {

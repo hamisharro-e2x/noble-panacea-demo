@@ -156,7 +156,7 @@ const NavigationMenuLink = forwardRef<
   return (
     <NavigationMenuPrimitive.Link
       className={cn(
-        'flex justify-between p-5 font-light hover:text-blue-primary focus:outline-none focus:ring-4 focus:ring-blue-primary/20',
+        'flex justify-between p-5 text-sm font-light hover:text-blue-primary focus:outline-none focus:ring-4 focus:ring-blue-primary/20 2xl:text-xl',
         className,
       )}
       onClick={() => setIsExpanded(false)}

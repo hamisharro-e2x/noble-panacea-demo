@@ -98,9 +98,28 @@ const HeaderNav = async ({
           </NavigationMenuItem>
         ))}
         <NavigationMenuItem>
-          <Link className="flex text-sm font-light uppercase 2xl:text-xl" href="/blog-filter">
+          <Link className="flex p-5 text-sm font-light uppercase 2xl:text-xl" href="/blog-filter">
             Amplience Blog
           </Link>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger className="gap-0 p-5 text-sm font-light uppercase 2xl:text-xl">
+            Season
+          </NavigationMenuTrigger>
+          <NavigationMenuContent
+            className={cn(
+              !inCollapsedNav && 'mx-auto flex w-[700px] flex-row gap-20',
+              inCollapsedNav && 'ps-3',
+            )}
+          >
+            {['Winter', 'Summer', 'Spring', 'Autumn'].map((season) => (
+              <ul className={cn(inCollapsedNav && 'pb-4')} key={season}>
+                <NavigationMenuItem>
+                  <NavigationMenuLink href={`?season=${season}`}>{season}</NavigationMenuLink>
+                </NavigationMenuItem>
+              </ul>
+            ))}
+          </NavigationMenuContent>
         </NavigationMenuItem>
       </NavigationMenuList>
       {inCollapsedNav && (
