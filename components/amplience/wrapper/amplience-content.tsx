@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { DefaultContentBody } from 'dc-delivery-sdk-js';
 
+import ArticleCardCarousel from '../../article/article-carousel';
 import ContentBlock from '../../content-block';
 import ContentCarousel from '../../content-carousel';
 import HeroBanner from '../../hero-banner';
@@ -21,6 +22,7 @@ const COMPONENT_MAPPING: ComponentMapType = {
   'https://noble-panacea-demo.vercel.app/content/video-block': VideoShowcase,
   'https://noble-panacea-demo.vercel.app/content/hero-banner-carousel': HeroBannerCarousel,
   'https://noble-panacea-demo.vercel.app/content/content-product-carousel': DynamicProductContent,
+  'https://noble-panacea-demo.vercel.app/content/article-carousel': ArticleCardCarousel,
 };
 
 const MappingNotFound = (content: DefaultContentBody) => {

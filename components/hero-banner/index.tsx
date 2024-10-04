@@ -37,7 +37,7 @@ function HeroBanner({ image, content, imageAltText, ctaButton, isDark }: HeroBan
         <Markdown content={content} />
         {ctaButton && (
           <Button asChild className="w-fit" variant={isDark ? 'quaternary' : 'tertiary'}>
-            <a href={ctaButton.label}>{ctaButton.label}</a>
+            <a href={ctaButton.href}>{ctaButton.label}</a>
           </Button>
         )}
       </div>
