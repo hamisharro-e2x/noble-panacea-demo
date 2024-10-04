@@ -7,18 +7,22 @@ import { Product } from '~/components/product-card';
 
 interface DynamicProductGridProps {
   limit?: number;
-  category: string;
-  title?: string;
+  productIds: string[];
   content: string;
   isDark?: boolean;
 }
 
-const DynamicProductContent = ({ limit = 10, category, content, isDark }: DynamicProductGridProps) => {
+const DynamicProductContent = ({
+  limit = 10,
+  productIds,
+  content,
+  isDark,
+}: DynamicProductGridProps) => {
   const [hydratedProducts, setHydratedProducts] = useState<Array<Partial<Product>>>([]);
 
   useEffect(() => {
     const load = async () => {
-      const response = await fetch(`/api/products-in-category/501`);
+      const response = await fetch(`/api/products/${productIds.join(',')}`);
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const allProducts = await response.json();
       const products = Array.isArray(allProducts) ? allProducts.slice(0, limit) : [];
@@ -27,7 +31,7 @@ const DynamicProductContent = ({ limit = 10, category, content, isDark }: Dynami
     };
 
     void load();
-  }, [category, limit]);
+  }, [productIds, limit]);
 
   return (
     <ContentProductCarousel
