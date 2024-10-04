@@ -11,6 +11,7 @@ const variantDefs = {
     'bg-transparent text-blue-primary hover:bg-blue-secondary hover:bg-opacity-10 hover:border-blue-secondary hover:text-blue-secondary disabled:text-gray-400 disabled:hover:bg-transparent disabled:hover:border-gray-400 disabled:hover:text-gray-400',
   tertiary:
     'bg-black border text-white border-white hover:bg-white hover:bg-opacity-10 hover:border-black hover:text-black disabled:text-gray-400 disabled:hover:bg-transparent disabled:hover:border-gray-400 disabled:hover:text-gray-400',
+  quaternary: 'bg-white border text-black border-black hover:bg-black hover:bg-opacity-10 hover:border-white hover:text-white disabled:text-gray-400 disabled:hover:bg-transparent disabled:hover:border-gray-400 disabled:hover:text-gray-400',
   subtle:
     'border-none bg-transparent text-blue-primary hover:bg-blue-secondary hover:bg-opacity-10 hover:text-blue-secondary disabled:text-gray-400 disabled:hover:bg-transparent disabled:hover:text-gray-400',
 };
