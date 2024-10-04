@@ -15,37 +15,25 @@ export const contentTypesPatch = {
   ],
   contentTypes: [
     {
-      contentTypeUri: 'https://demostore.amplience.com/content/card',
+      contentTypeUri: 'https://noble-panacea-demo.vercel.app/content/content-block',
     },
     {
-      contentTypeUri: 'https://demostore.amplience.com/content/card-list',
+      contentTypeUri: 'https://noble-panacea-demo.vercel.app/content/hero-banner',
     },
     {
-      contentTypeUri: 'https://demostore.amplience.com/content/blog',
+      contentTypeUri: 'https://noble-panacea-demo.vercel.app/content/dynamic-product-carousel',
     },
     {
-      contentTypeUri: 'https://demostore.amplience.com/content/curated-product-grid',
+      contentTypeUri: 'https://noble-panacea-demo.vercel.app/content/image-carousel',
     },
     {
-      contentTypeUri: 'https://demostore.amplience.com/content/product-grid',
+      contentTypeUri: 'https://noble-panacea-demo.vercel.app/content/video-block',
     },
     {
-      contentTypeUri: 'https://demostore.amplience.com/slots/flexible',
+      contentTypeUri: 'https://noble-panacea-demo.vercel.app/content/page',
     },
     {
-      contentTypeUri: 'https://demostore.amplience.com/content/image',
-    },
-    {
-      contentTypeUri: 'https://demostore.amplience.com/content/rich-text',
-    },
-    {
-      contentTypeUri: 'https://demostore.amplience.com/content/simple-banner',
-    },
-    {
-      contentTypeUri: 'https://demostore.amplience.com/content/text',
-    },
-    {
-      contentTypeUri: 'https://demostore.amplience.com/site/pages',
+      contentTypeUri: 'https://noble-panacea-demo.vercel.app/slot/page',
       visualizations: [
         {
           label: 'BigCommerce Catalyst Production',

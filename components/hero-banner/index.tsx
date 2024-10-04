@@ -16,7 +16,7 @@ export interface HeroBannerProps {
 
 function HeroBanner({ image, content, imageAltText, ctaButton }: HeroBannerProps) {
   return (
-    <div className="relative grid-cols-1 font-light md:grid-cols-1">
+    <div className="relative font-light ">
       <Image
         alt={imageAltText}
         className="absolute -z-10 object-cover"
@@ -25,7 +25,7 @@ function HeroBanner({ image, content, imageAltText, ctaButton }: HeroBannerProps
         sizes="(max-width: 1536px) 100vw, 1536px"
         src={`https://${image.endpoint}.a.bigcontent.io/v1/static/${image.name}`}
       />
-      <div className="flex w-2/5 flex-col gap-5 px-12 pb-48 pt-36 text-white">
+      <div className="flex w-full flex-col gap-5 px-12 pb-48 pt-36 text-white md:w-2/3 xl:w-2/5">
         <Markdown content={content} />
         {ctaButton && (
           <Button asChild className="w-fit" variant="tertiary">

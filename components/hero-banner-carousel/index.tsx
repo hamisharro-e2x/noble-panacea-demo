@@ -10,15 +10,19 @@ import {
 } from '../ui/carousel';
 
 interface HeroBannerCarouselProps {
-  heroContent: HeroBannerProps[];
+  banners: HeroBannerProps[];
 }
 
-function HeroBannerCarousel({ heroContent }: HeroBannerCarouselProps) {
+function HeroBannerCarousel({ banners }: HeroBannerCarouselProps) {
   return (
     <Carousel className="relative mx-0 stroke-white px-0 text-white">
       <CarouselContent className="m-0 my-0 lg:mt-0 2xl:my-0">
-        {heroContent.map((content, index) => (
-          <CarouselItem index={index} key={content.content}>
+        {banners.map((content, index) => (
+          <CarouselItem
+            className="grid-cols-1 px-0 md:grid-cols-1"
+            index={index}
+            key={content.content}
+          >
             <HeroBanner {...content} />
           </CarouselItem>
         ))}
@@ -30,7 +34,7 @@ function HeroBannerCarousel({ heroContent }: HeroBannerCarouselProps) {
         <CarouselNextIndicator className="hidden size-4 lg:flex 2xl:size-5" />
       </div>
       <CarouselPagination className="hidden lg:flex">
-        {heroContent.map(({ content }, index) => (
+        {banners.map(({ content }, index) => (
           <CarouselPaginationTab index={index} key={`tab-${content}`} />
         ))}
       </CarouselPagination>

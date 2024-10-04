@@ -6,6 +6,7 @@ import { DefaultContentBody } from 'dc-delivery-sdk-js';
 import ContentCarousel from '../../award-carousel';
 import ContentBlock from '../../content-block';
 import HeroBanner from '../../hero-banner';
+import HeroBannerCarousel from '../../hero-banner-carousel';
 import VideoShowcase from '../../video-showcase';
 import DynamicProductGrid from '../dynamic-product-grid/dynamic-product-grid';
 
@@ -17,6 +18,7 @@ const COMPONENT_MAPPING: ComponentMapType = {
   'https://noble-panacea-demo.vercel.app/content/dynamic-product-carousel': DynamicProductGrid,
   'https://noble-panacea-demo.vercel.app/content/image-carousel': ContentCarousel,
   'https://noble-panacea-demo.vercel.app/content/video-block': VideoShowcase,
+  'https://noble-panacea-demo.vercel.app/content/hero-banner-carousel': HeroBannerCarousel,
 };
 
 const MappingNotFound = (content: DefaultContentBody) => {
