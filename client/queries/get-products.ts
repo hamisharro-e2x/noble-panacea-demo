@@ -45,6 +45,7 @@ export const getProducts = cache(
 
     return products.map((product) => ({
       ...product,
+      categories: removeEdgesAndNodes(product.categories),
       productOptions: removeEdgesAndNodes(product.productOptions),
     }));
   },

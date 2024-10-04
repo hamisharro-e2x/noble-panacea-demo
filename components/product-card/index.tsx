@@ -119,11 +119,11 @@ export const ProductCard = ({
           )}
         </div>
       </ProductCardImage>
-      <ProductCardInfo className={cn('text-center font-light', showCart && 'justify-end')}>
+      <ProductCardInfo className={cn('text-center font-extralight', showCart && 'justify-end')}>
         {showBrand && product.brand && (
           <ProductCardInfoBrandName>{product.brand.name}</ProductCardInfoBrandName>
         )}
-        {category && <p className="uppercase">{category.name}</p>}
+        {category && <p className="text-sm uppercase xl:text-lg">{category.name}</p>}
         <ProductCardInfoProductName className="font-light uppercase">
           {product.path ? (
             <Link
@@ -138,7 +138,10 @@ export const ProductCard = ({
           )}
         </ProductCardInfoProductName>
         {typeof product.description === 'string' && (
-          <p className="text-sm" dangerouslySetInnerHTML={{ __html: product.description }} />
+          <p
+            className="text-xs xl:text-sm"
+            dangerouslySetInnerHTML={{ __html: product.description }}
+          />
         )}
         {product.reviewSummary && showReviews && (
           <div className="flex items-center gap-3">
@@ -166,7 +169,7 @@ export const ProductCard = ({
           </div>
         )}
         <div className="flex flex-wrap items-end justify-center pt-1">
-          <ProductCardInfoPrice className="text-2xl font-semibold">
+          <ProductCardInfoPrice className="text-lg font-semibold xl:text-2xl">
             <Pricing prices={product.prices} />
           </ProductCardInfoPrice>
           {showCompare && (
