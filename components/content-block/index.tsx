@@ -4,15 +4,20 @@ import { cn } from '~/lib/utils';
 
 import { AmplienceImage } from '../amplience/image/image.types';
 import Markdown from '../markdown';
+import { Button } from '../ui/button';
 
 interface ContentBlockProps {
   content: string;
   image: AmplienceImage;
   imageAltText: string;
   isDark?: boolean;
+  ctaButton?: {
+    label: string;
+    href: string;
+  };
 }
 
-function ContentBlock({ content, image, imageAltText, isDark }: ContentBlockProps) {
+function ContentBlock({ content, image, imageAltText, isDark, ctaButton }: ContentBlockProps) {
   return (
     <div className="relative w-full">
       <Image
@@ -25,6 +30,11 @@ function ContentBlock({ content, image, imageAltText, isDark }: ContentBlockProp
       />
       <div className={cn('flex flex-col gap-5 px-12 py-20 text-center', isDark && 'text-white')}>
         <Markdown content={content} />
+        {ctaButton && (
+          <Button asChild className="mx-auto w-fit" variant={isDark ? 'quaternary' : 'tertiary'}>
+            <a href={ctaButton.href}>{ctaButton.label}</a>
+          </Button>
+        )}
       </div>
     </div>
   );

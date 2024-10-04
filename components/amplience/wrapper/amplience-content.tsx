@@ -8,6 +8,7 @@ import ContentCarousel from '../../content-carousel';
 import HeroBanner from '../../hero-banner';
 import HeroBannerCarousel from '../../hero-banner-carousel';
 import VideoShowcase from '../../video-showcase';
+import DynamicProductContent from '../dynamic-product-grid/dynamic-product-content';
 import DynamicProductGrid from '../dynamic-product-grid/dynamic-product-grid';
 
 type ComponentMapType = Record<string, (...args: any) => any>;
@@ -19,6 +20,7 @@ const COMPONENT_MAPPING: ComponentMapType = {
   'https://noble-panacea-demo.vercel.app/content/image-carousel': ContentCarousel,
   'https://noble-panacea-demo.vercel.app/content/video-block': VideoShowcase,
   'https://noble-panacea-demo.vercel.app/content/hero-banner-carousel': HeroBannerCarousel,
+  'https://noble-panacea-demo.vercel.app/content/content-product-carousel': DynamicProductContent,
 };
 
 const MappingNotFound = (content: DefaultContentBody) => {

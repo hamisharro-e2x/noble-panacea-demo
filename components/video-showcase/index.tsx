@@ -28,7 +28,7 @@ function VideoShowcase({ videoId, content, ctaButton, className, isDark }: Video
       <Markdown className="mb-8 px-12" content={content} />
       <WistiaPlayer videoId={videoId} wrapper={`wistia-player-${videoId}`} />
       {ctaButton && (
-        <Button asChild className="mx-auto w-fit" variant="tertiary">
+        <Button asChild className="mx-auto w-fit" variant={isDark ? 'quaternary' : 'tertiary'}>
           <a href={ctaButton.href}>{ctaButton.label}</a>
         </Button>
       )}
