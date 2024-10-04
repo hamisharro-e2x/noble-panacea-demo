@@ -8,10 +8,13 @@ import {
   CarouselPreviousIndicator,
 } from '@bigcommerce/components/carousel';
 
+import Markdown from '../markdown';
+
 import ArticleCard from './article-card';
+import { Pagination } from './pagination';
 import { Article } from './types';
 
-const ArticleCardCarousel = ({ title, articles }: { title: string; articles: Article[] }) => {
+const ArticleCardCarousel = ({ content, articles }: { content: string; articles: Article[] }) => {
   const id = useId();
 
   if (articles.length === 0) {
@@ -34,10 +37,8 @@ const ArticleCardCarousel = ({ title, articles }: { title: string; articles: Art
 
   return (
     <Carousel aria-labelledby="title" className="mb-14" opts={{ loop: true }}>
-      <div className="flex items-center justify-between">
-        <h2 className="text-lg font-light uppercase lg:text-2xl" id="title">
-          {title}
-        </h2>
+      <Markdown className="px-12 pt-8 text-center" content={content} />
+      <div className="flex items-center justify-end">
         <span className="no-wrap flex">
           <CarouselPreviousIndicator />
           <CarouselNextIndicator />
@@ -57,6 +58,7 @@ const ArticleCardCarousel = ({ title, articles }: { title: string; articles: Art
           </CarouselItem>
         ))}
       </CarouselContent>
+      <Pagination groupedArticles={groupedArticles} id={id} />
     </Carousel>
   );
 };
