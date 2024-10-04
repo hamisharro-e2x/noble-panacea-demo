@@ -3,8 +3,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { DefaultContentBody } from 'dc-delivery-sdk-js';
 
-import ContentCarousel from '../../award-carousel';
 import ContentBlock from '../../content-block';
+import ContentCarousel from '../../content-carousel';
 import HeroBanner from '../../hero-banner';
 import HeroBannerCarousel from '../../hero-banner-carousel';
 import VideoShowcase from '../../video-showcase';

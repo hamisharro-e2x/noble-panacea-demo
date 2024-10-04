@@ -2,7 +2,7 @@ import { cn } from '~/lib/utils';
 
 import { AmplienceImage } from '../amplience/image/image.types';
 import Markdown from '../markdown';
-import ImageCarousel from '../ui/image-carousel';
+import { ImageCarousel, ImageCarouselFullWidth } from '../ui/image-carousel';
 
 interface ContentCarouselProps {
   content: string;
@@ -15,6 +15,8 @@ interface ContentCarouselProps {
 }
 
 function ContentCarousel({ content, images, className, isDark }: ContentCarouselProps) {
+  const Carousel = isDark ? ImageCarouselFullWidth : ImageCarousel;
+
   return (
     <div
       className={cn(
@@ -24,7 +26,7 @@ function ContentCarousel({ content, images, className, isDark }: ContentCarousel
       )}
     >
       <Markdown className="px-4" content={content} />
-      <ImageCarousel
+      <Carousel
         images={images.map(({ image, imageAltText }) => ({
           src: `https://${image.endpoint}.a.bigcontent.io/v1/static/${image.name}`,
           alt: imageAltText,
