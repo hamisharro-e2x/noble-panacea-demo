@@ -9,7 +9,7 @@ import React from 'react';
 
 import { createAmplienceClient } from '~/amplience-client';
 import { clientOptionsMapper } from '~/amplience-client/mappers/client-options-mapper';
-import AmplienceContent from '~/components/amplience/wrapper/amplience-content';
+import { RealtimePageVisualization } from '~/components/amplience/realtime-visualization/realtime-visualization';
 import { SEASON_KEY } from '~/lib/constants';
 
 export interface VisualizationProps {
@@ -24,17 +24,9 @@ export default async function Visualization({ searchParams }: VisualizationProps
   try {
     const response = await amplienceClient.getContentItemById(contentId);
 
-    const items = response.toJSON().content as any[];
+    const content = response.toJSON();
 
-    return (
-      <>
-        {items
-          .filter((item) => !season || !item.season || item.season === season)
-          .map((item, index: number) => {
-            return <AmplienceContent content={item} key={index} />;
-          })}
-      </>
-    );
+    return <RealtimePageVisualization content={content} season={season} />;
   } catch (e) {
     return (
       <div>
@@ -43,7 +35,5 @@ export default async function Visualization({ searchParams }: VisualizationProps
     );
   }
 }
-
-export const runtime = 'edge';
 
 export const fetchCache = 'force-no-store';

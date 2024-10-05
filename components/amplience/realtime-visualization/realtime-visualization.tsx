@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
 'use client';
 
@@ -8,6 +11,7 @@ import {
   useInitialRealtimeContent,
   useRealtimeVisualization,
 } from '~/app/contexts/amplience/realtime-visualization-context';
+import ArticleBlock from '~/components/article/article-block';
 
 import AmplienceContent from '../wrapper/amplience-content';
 
@@ -15,7 +19,11 @@ export interface RealtimeVisualizationProps {
   content?: DefaultContentBody;
 }
 
-export default function RealtimeVisualization({ content }: RealtimeVisualizationProps) {
+interface RealtimePageVisualizationProps extends RealtimeVisualizationProps {
+  season?: string;
+}
+
+export function RealtimeComponentVisualization({ content }: RealtimeVisualizationProps) {
   const [contentItem, setContentItem] = useState<DefaultContentBody | undefined>(content);
 
   const updateRealtimeContent = useCallback((realtimeContent: Record<string, unknown>) => {
@@ -27,4 +35,41 @@ export default function RealtimeVisualization({ content }: RealtimeVisualization
   useRealtimeVisualization(updateRealtimeContent);
 
   return <div>{contentItem && <AmplienceContent content={contentItem} />}</div>;
+}
+
+export function RealtimePageVisualization({ content, season }: RealtimePageVisualizationProps) {
+  const [contentItem, setContentItem] = useState<DefaultContentBody | undefined>(content);
+
+  const updateRealtimeContent = useCallback((realtimeContent: Record<string, unknown>) => {
+    setContentItem(realtimeContent as DefaultContentBody);
+  }, []);
+
+  useInitialRealtimeContent(updateRealtimeContent);
+
+  useRealtimeVisualization(updateRealtimeContent);
+
+  return (
+    <div>
+      {contentItem &&
+        (contentItem.content as any[])
+          .filter((item) => !season || !item.season || item.season === season)
+          .map((item, index: number) => {
+            return <AmplienceContent content={item} key={index} />;
+          })}
+    </div>
+  );
+}
+
+export function RealtimeArticleVisualization({ content }: RealtimeVisualizationProps) {
+  const [contentItem, setContentItem] = useState<DefaultContentBody | undefined>(content);
+
+  const updateRealtimeContent = useCallback((realtimeContent: Record<string, unknown>) => {
+    setContentItem(realtimeContent as DefaultContentBody);
+  }, []);
+
+  useInitialRealtimeContent(updateRealtimeContent);
+
+  useRealtimeVisualization(updateRealtimeContent);
+
+  return <div>{contentItem && <ArticleBlock {...(contentItem as any)} />}</div>;
 }

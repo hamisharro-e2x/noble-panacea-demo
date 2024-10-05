@@ -4,7 +4,7 @@ import { ReadonlyURLSearchParams } from 'next/navigation';
 
 import { createAmplienceClient } from '~/amplience-client';
 import { clientOptionsMapper } from '~/amplience-client/mappers/client-options-mapper';
-import RealtimeVisualization from '~/components/amplience/realtime-visualization/realtime-visualization';
+import { RealtimeComponentVisualization } from '~/components/amplience/realtime-visualization/realtime-visualization';
 
 export interface VisualizationProps {
   searchParams: ReadonlyURLSearchParams & { contentId: string };
@@ -21,7 +21,7 @@ export default async function Visualization({ searchParams }: VisualizationProps
 
     return (
       <div>
-        <RealtimeVisualization content={content} />
+        <RealtimeComponentVisualization content={content} />
       </div>
     );
   } catch (e) {

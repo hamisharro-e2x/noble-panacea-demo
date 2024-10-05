@@ -8,7 +8,7 @@ import React from 'react';
 
 import { createAmplienceClient } from '~/amplience-client';
 import { clientOptionsMapper } from '~/amplience-client/mappers/client-options-mapper';
-import ArticleBlock from '~/components/article/article-block';
+import { RealtimeArticleVisualization } from '~/components/amplience/realtime-visualization/realtime-visualization';
 
 export interface VisualizationProps {
   searchParams: ReadonlyURLSearchParams & { contentId: string };
@@ -21,9 +21,9 @@ export default async function Visualization({ searchParams }: VisualizationProps
   try {
     const response = await amplienceClient.getContentItemById(contentId);
 
-    const article = response.toJSON();
+    const content = response.toJSON();
 
-    return <ArticleBlock {...article} />;
+    return <RealtimeArticleVisualization content={content} />;
   } catch (e) {
     return (
       <div>
