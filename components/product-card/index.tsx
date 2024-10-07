@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import Image from 'next/image';
 import React, { useId } from 'react';
 
@@ -95,6 +96,8 @@ export const ProductCard = ({
     return null;
   }
 
+  const regex = /<p id="card-text">[^]*?<\/p>/;
+
   return (
     <ComponentsProductCard key={product.entityId}>
       <ProductCardImage>
@@ -140,7 +143,7 @@ export const ProductCard = ({
         {typeof product.description === 'string' && (
           <p
             className="text-xs xl:text-sm"
-            dangerouslySetInnerHTML={{ __html: product.description }}
+            dangerouslySetInnerHTML={{ __html: product.description.match(regex) ?? '' }}
           />
         )}
         {product.reviewSummary && showReviews && (
