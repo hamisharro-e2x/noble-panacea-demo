@@ -6,7 +6,7 @@ export const StoreLogo = () => {
       alt="Noble Panacea store logo"
       height={26}
       priority
-      src="https://applytrial.a.bigcontent.io/v1/static/logo_1"
+      src="https://applytrial.a.bigcontent.io/v1/static/Untitled design (15)"
       width={307}
     />
   );
