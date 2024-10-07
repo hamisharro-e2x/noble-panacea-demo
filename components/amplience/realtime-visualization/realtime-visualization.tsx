@@ -5,7 +5,7 @@
 'use client';
 
 import { DefaultContentBody } from 'dc-delivery-sdk-js';
-import { useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import {
   useInitialRealtimeContent,
@@ -48,16 +48,13 @@ export function RealtimePageVisualization({ content, season }: RealtimePageVisua
 
   useRealtimeVisualization(updateRealtimeContent);
 
-  return (
-    <div>
-      {contentItem &&
-        (contentItem.content as any[])
-          .filter((item) => !season || !item.season || item.season === season)
-          .map((item, index: number) => {
-            return <AmplienceContent content={item} key={index} />;
-          })}
-    </div>
-  );
+  if (!contentItem) return null;
+
+  return (contentItem.content as any[])
+    .filter((item) => !season || !item.season || item.season === season)
+    .map((item, index: number) => {
+      return <AmplienceContent content={item} key={index} />;
+    });
 }
 
 export function RealtimeArticleVisualization({ content }: RealtimeVisualizationProps) {
