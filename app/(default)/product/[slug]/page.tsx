@@ -1,8 +1,12 @@
+import { Page as MakeswiftPage } from '@makeswift/runtime/next';
+import { getSiteVersion } from '@makeswift/runtime/next/server';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import React, { Suspense } from 'react';
 
 import { getProduct } from '~/client/queries/get-product';
+import { client } from '~/makeswift/client';
+import { templatePathnames } from '~/makeswift/config';
 
 import { BreadCrumbs } from './_components/breadcrumbs';
 import { Description } from './_components/description';
@@ -64,8 +68,15 @@ export default async function Product({ params, searchParams }: ProductPageProps
     return notFound();
   }
 
+  const snapshot = await client.getPageSnapshot(templatePathnames.productTemplatePathname, {
+    siteVersion: getSiteVersion(),
+  });
+
+  if (snapshot == null) return notFound();
+
   return (
     <>
+      <MakeswiftPage snapshot={snapshot} />
       <BreadCrumbs productId={product.entityId} />
       <div className="mb-12 mt-4 lg:grid lg:grid-cols-2 lg:gap-8">
         <Gallery product={product} />

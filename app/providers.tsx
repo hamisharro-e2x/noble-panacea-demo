@@ -2,14 +2,16 @@
 
 import { PropsWithChildren } from 'react';
 
+import { RealtimeVisualizationProvider } from '~/app/contexts/amplience/realtime-visualization-context';
 import { CompareProductsProvider } from '~/app/contexts/compare-products-context';
-
-import { RealtimeVisualizationProvider } from './contexts/amplience/realtime-visualization-context';
+import { MakeswiftProvider } from '~/makeswift/provider';
 
 export function Providers({ children }: PropsWithChildren) {
   return (
     <CompareProductsProvider>
-      <RealtimeVisualizationProvider>{children}</RealtimeVisualizationProvider>
+      <MakeswiftProvider>
+        <RealtimeVisualizationProvider>{children}</RealtimeVisualizationProvider>
+      </MakeswiftProvider>
     </CompareProductsProvider>
   );
 }

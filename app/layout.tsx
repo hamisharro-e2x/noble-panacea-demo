@@ -1,3 +1,4 @@
+import { DraftModeScript } from '@makeswift/runtime/next/server';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
@@ -39,6 +40,9 @@ export const fetchCache = 'default-cache';
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html className={`${inter.variable} font-sans`} lang="en">
+      <head>
+        <DraftModeScript />
+      </head>
       <body className="flex h-screen flex-col">
         <Notifications />
         <Providers>{children}</Providers>

@@ -1,3 +1,7 @@
+const createWithMakeswift = require('@makeswift/runtime/next/plugin');
+
+const withMakeswift = createWithMakeswift();
+
 // @ts-check
 
 const cspHeader = `
@@ -45,4 +49,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+module.exports = withMakeswift(nextConfig);
