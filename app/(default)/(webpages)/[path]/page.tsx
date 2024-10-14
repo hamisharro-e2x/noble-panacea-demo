@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 import { client } from '~/makeswift/client';
 
 interface ParsedUrlQuery {
-  path?: string[];
+  path: string;
 }
 
 export default async function Page({ params }: { params: ParsedUrlQuery }) {
@@ -15,9 +15,7 @@ export default async function Page({ params }: { params: ParsedUrlQuery }) {
     path: page.path.split('/').filter((segment) => segment !== ''),
   }));
 
-  const path = `/${(params.path ?? []).join('/')}`;
-
-  const snapshot = await client.getPageSnapshot(path, {
+  const snapshot = await client.getPageSnapshot(params.path, {
     siteVersion: getSiteVersion(),
   });
 
