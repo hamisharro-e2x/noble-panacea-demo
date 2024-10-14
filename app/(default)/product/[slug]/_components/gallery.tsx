@@ -42,13 +42,13 @@ export const Gallery = ({ product }: { product: NonNullable<Product> }) => {
     <div className="-mx-6 mb-10 sm:-mx-0 md:mb-12">
       <div className="lg:sticky lg:top-0">
         <ComponentsGallery defaultImageIndex={defaultImageIndex} images={images}>
-          <GalleryContent>
+          <GalleryContent className="aspect-[5/6] max-h-[70%]">
             <GalleryImage>
               {({ selectedImage }) =>
                 selectedImage ? (
                   <Image
                     alt={selectedImage.altText}
-                    className="h-full w-full object-contain"
+                    className="h-full w-full object-cover"
                     fill
                     priority={true}
                     sizes="(min-width: 1024px) 50vw, 100vw"
@@ -63,7 +63,7 @@ export const Gallery = ({ product }: { product: NonNullable<Product> }) => {
             </GalleryImage>
             <GalleryControls />
           </GalleryContent>
-          <GalleryThumbnailList className="px-6 sm:px-1">
+          <GalleryThumbnailList className="no-scrollbar flex-nowrap overflow-hidden overflow-x-scroll px-6 sm:px-1">
             {images.map((image, index) => {
               return (
                 <GalleryThumbnailItem imageIndex={index} key={image.url}>

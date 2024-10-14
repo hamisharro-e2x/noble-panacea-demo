@@ -106,8 +106,8 @@ const GalleryControls = forwardRef<ElementRef<'div'>, ComponentPropsWithRef<'div
       >
         {children || (
           <>
-            <GalleryPreviousIndicator />
-            <GalleryNextIndicator />
+            <GalleryPreviousIndicator className="px-4" />
+            <GalleryNextIndicator className="px-4" />
           </>
         )}
       </div>

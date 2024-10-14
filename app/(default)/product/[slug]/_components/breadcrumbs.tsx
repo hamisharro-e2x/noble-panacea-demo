@@ -10,6 +10,8 @@ export const BreadCrumbs = async ({ productId }: Props) => {
   const product = await getProduct(productId);
   const category = product?.categories?.[0];
 
+  console.log(category);
+
   if (!category) {
     return null;
   }
