@@ -15,7 +15,7 @@ export default function DefaultLayout({ children }: PropsWithChildren) {
     <>
       <ControlBar initialSeason={season} />
       <Header cart={<Cart />} />
-      <main className="flex-1 space-y-8 px-6 pb-8 2xl:container sm:px-10 lg:px-12 2xl:mx-auto 2xl:px-0">
+      <main className="flex-1 space-y-8 px-6 pb-8 2xl:container sm:px-10 md:px-24 2xl:mx-auto 2xl:px-0">
         {children}
       </main>
       <Suspense fallback={null}>

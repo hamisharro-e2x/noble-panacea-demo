@@ -12,7 +12,7 @@ import {
 } from '@bigcommerce/components/product-card';
 import { Rating } from '@bigcommerce/components/rating';
 import { Link } from '~/components/link';
-import { cn } from '~/lib/utils';
+import { cardTextRegex, cn } from '~/lib/utils';
 
 import { Pricing } from '../pricing';
 
@@ -96,8 +96,6 @@ export const ProductCard = ({
     return null;
   }
 
-  const regex = /<p id="card-text">[^]*?<\/p>/;
-
   return (
     <ComponentsProductCard key={product.entityId}>
       <ProductCardImage>
@@ -143,7 +141,7 @@ export const ProductCard = ({
         {typeof product.description === 'string' && (
           <p
             className="text-xs xl:text-sm"
-            dangerouslySetInnerHTML={{ __html: product.description.match(regex) ?? '' }}
+            dangerouslySetInnerHTML={{ __html: product.description.match(cardTextRegex) ?? '' }}
           />
         )}
         {product.reviewSummary && showReviews && (

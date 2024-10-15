@@ -1,5 +1,4 @@
 import { Counter } from '@bigcommerce/components/counter';
-import { Label } from '@bigcommerce/components/label';
 
 import { useProductFieldController } from '../use-product-form';
 
@@ -12,9 +11,6 @@ export const QuantityField = () => {
 
   return (
     <div className="@md:w-32">
-      <Label className="mb-2 inline-block font-semibold" htmlFor="quantity">
-        Quantity
-      </Label>
       <Counter
         id="quantity"
         min={1}

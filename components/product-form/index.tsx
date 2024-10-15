@@ -1,10 +1,9 @@
 'use client';
 
-import { AlertCircle, Check, Heart } from 'lucide-react';
+import { AlertCircle, Check } from 'lucide-react';
 import { FormProvider } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 
-import { Button } from '@bigcommerce/components/button';
 import { getProduct } from '~/client/queries/get-product';
 import { ExistingResultType } from '~/client/util';
 
@@ -50,7 +49,13 @@ export const productFormSubmit = async (data: ProductFormData) => {
   );
 };
 
-export const ProductForm = ({ product }: { product: Product }) => {
+export const ProductForm = ({
+  product,
+  showOptions = false,
+}: {
+  product: Product;
+  showOptions?: boolean;
+}) => {
   const { handleSubmit, register, ...methods } = useProductForm();
 
   return (
@@ -58,46 +63,38 @@ export const ProductForm = ({ product }: { product: Product }) => {
       <form className="@container flex flex-col gap-6" onSubmit={handleSubmit(productFormSubmit)}>
         <input type="hidden" value={product.entityId} {...register('product_id')} />
 
-        {product.productOptions?.map((option) => {
-          if (option.__typename === 'MultipleChoiceOption') {
-            return <MultipleChoiceField key={option.entityId} option={option} />;
-          }
+        {showOptions &&
+          product.productOptions?.map((option) => {
+            if (option.__typename === 'MultipleChoiceOption') {
+              return <MultipleChoiceField key={option.entityId} option={option} />;
+            }
 
-          if (option.__typename === 'CheckboxOption') {
-            return <CheckboxField key={option.entityId} option={option} />;
-          }
+            if (option.__typename === 'CheckboxOption') {
+              return <CheckboxField key={option.entityId} option={option} />;
+            }
 
-          if (option.__typename === 'NumberFieldOption') {
-            return <NumberField key={option.entityId} option={option} />;
-          }
+            if (option.__typename === 'NumberFieldOption') {
+              return <NumberField key={option.entityId} option={option} />;
+            }
 
-          if (option.__typename === 'MultiLineTextFieldOption') {
-            return <MultiLineTextField key={option.entityId} option={option} />;
-          }
+            if (option.__typename === 'MultiLineTextFieldOption') {
+              return <MultiLineTextField key={option.entityId} option={option} />;
+            }
 
-          if (option.__typename === 'TextFieldOption') {
-            return <TextField key={option.entityId} option={option} />;
-          }
+            if (option.__typename === 'TextFieldOption') {
+              return <TextField key={option.entityId} option={option} />;
+            }
 
-          if (option.__typename === 'DateFieldOption') {
-            return <DateField key={option.entityId} option={option} />;
-          }
+            if (option.__typename === 'DateFieldOption') {
+              return <DateField key={option.entityId} option={option} />;
+            }
 
-          return null;
-        })}
+            return null;
+          })}
 
-        <QuantityField />
-
-        <div className="@md:flex-row mt-4 flex flex-col gap-4">
+        <div className="flex gap-4">
+          <QuantityField />
           <AddToCart disabled={product.availabilityV2.status === 'Unavailable'} />
-
-          {/* NOT IMPLEMENTED YET */}
-          <div className="w-full">
-            <Button disabled type="submit" variant="secondary">
-              <Heart aria-hidden="true" className="mx-2" />
-              <span>Save to wishlist</span>
-            </Button>
-          </div>
         </div>
       </form>
     </FormProvider>
