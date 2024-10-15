@@ -20,7 +20,7 @@ function VideoShowcase({ videoId, content, ctaButton, className, isDark }: Video
   return (
     <div
       className={cn(
-        'flex flex-col justify-center space-y-5 py-4 text-center font-light',
+        'flex w-full flex-col justify-center space-y-5 py-4 text-center font-light',
         isDark && 'bg-gray-100',
         className,
       )}
