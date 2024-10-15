@@ -22,6 +22,9 @@ const nextConfig = {
       {
         hostname: 'applytrial.a.bigcontent.io',
       },
+      {
+        hostname: 'cdn.media.amplience.net',
+      },
     ],
   },
   transpilePackages: ['@bigcommerce/components'],

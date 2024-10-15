@@ -14,7 +14,7 @@ class AmplienceClient {
       hubName: hubName || String(process.env.AMPLIENCE_HUBNAME),
       stagingEnvironment: stagingEnvironment || '',
       locale: locale || 'en-US',
-      adaptor: fetchAdapter,
+      adaptor: fetchAdapter as any,
     });
   }
 }
