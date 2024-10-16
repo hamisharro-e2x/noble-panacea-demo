@@ -68,9 +68,9 @@ function VideoShowcaseColumn({ videoId, className, isDark }: VideoShowcaseProps)
         </p>
         <div>
           <h2 className="text-3xl">PERPETUAL POTENCY</h2>
-          <Accordion className="w-full" collapsible defaultValue="1" type="single">
-            {accordionItems.map(({ title, content }) => (
-              <AccordionItem className="flex flex-col" key={title} value="compare">
+          <Accordion className="w-full" collapsible defaultValue="" type="single">
+            {accordionItems.map(({ id, title, content }) => (
+              <AccordionItem className="flex flex-col" key={title} value={id}>
                 <AccordionTrigger className="text-xl font-extralight">{title}</AccordionTrigger>
                 <AccordionContent className="border-b p-4 text-sm">{content}</AccordionContent>
               </AccordionItem>
