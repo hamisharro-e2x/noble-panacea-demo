@@ -44,14 +44,7 @@ function ImageCarousel({ images }: ImageCarouselProps) {
       </div>
       <CarouselContent className="z-0 m-0 mt-0 lg:mt-0">
         {images.map(({ alt, src }) => (
-          <Image
-            alt={alt}
-            className="flex-2 md:flex-3"
-            height={300}
-            key={src}
-            src={src}
-            width={300}
-          />
+          <Image alt={alt} className="flex-shrink-0" height={300} key={src} src={src} width={300} />
         ))}
       </CarouselContent>
       <div className="hidden px-2 lg:flex">
