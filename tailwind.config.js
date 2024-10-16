@@ -32,12 +32,12 @@ const config = {
       white: '#ffffff',
     },
     extend: {
+      fontFamily: {
+        sans: ['Gotham_Light', 'var(--font-inter)'],
+      },
       flex: {
         2: '0 0 50%',
         3: '0 0 25%',
-      },
-      fontFamily: {
-        sans: ['Gotham_Light', 'var(--font-inter)'],
       },
       keyframes: {
         revealVertical: {
