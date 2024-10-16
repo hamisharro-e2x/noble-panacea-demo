@@ -5,13 +5,19 @@ import { useEffect, useState } from 'react';
 import { Product } from '~/components/product-card';
 import { ProductCardCarousel } from '~/components/product-card-carousel';
 
-interface DynamicProductGridProps {
+export interface DynamicProductContentProps {
   limit?: number;
   category: string;
   title?: string;
+  className?: string;
 }
 
-const DynamicProductGrid = ({ limit = 10, category, title = '' }: DynamicProductGridProps) => {
+const DynamicProductGrid = ({
+  limit = 10,
+  category,
+  title = '',
+  className,
+}: DynamicProductContentProps) => {
   const [hydratedProducts, setHydratedProducts] = useState<Array<Partial<Product>>>([]);
 
   useEffect(() => {
@@ -31,6 +37,7 @@ const DynamicProductGrid = ({ limit = 10, category, title = '' }: DynamicProduct
 
   return (
     <ProductCardCarousel
+      className={className}
       products={hydratedProducts}
       showBrand={false}
       showCart={false}

@@ -7,6 +7,7 @@ import {
   CarouselNextIndicator,
   CarouselPreviousIndicator,
 } from '@bigcommerce/components/carousel';
+import { cn } from '~/lib/utils';
 
 import { Product, ProductCard } from '../product-card';
 
@@ -19,6 +20,7 @@ export const ProductCardCarousel = ({
   showCompare = true,
   showReviews = true,
   showBrand = true,
+  className,
 }: {
   title: string;
   products: Array<Partial<Product>>;
@@ -26,6 +28,7 @@ export const ProductCardCarousel = ({
   showCompare?: boolean;
   showReviews?: boolean;
   showBrand?: boolean;
+  className?: string;
 }) => {
   const id = useId();
 
@@ -48,7 +51,7 @@ export const ProductCardCarousel = ({
   }, []);
 
   return (
-    <Carousel aria-labelledby="title" className="mb-14" opts={{ loop: true }}>
+    <Carousel aria-labelledby="title" className={cn('mb-14', className)} opts={{ loop: true }}>
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-light uppercase lg:text-2xl" id="title">
           {title}

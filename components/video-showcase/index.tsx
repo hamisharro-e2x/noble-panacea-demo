@@ -4,7 +4,7 @@ import Markdown from '../markdown';
 import { Button } from '../ui/button';
 import WistiaPlayer from '../wistia-player';
 
-interface VideoShowcaseProps {
+export interface VideoShowcaseProps {
   videoId: string;
   eyeBrow?: string;
   ctaButton?: {

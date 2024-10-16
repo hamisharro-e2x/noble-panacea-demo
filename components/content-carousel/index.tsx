@@ -4,7 +4,7 @@ import { AmplienceImage } from '../amplience/image/image.types';
 import Markdown from '../markdown';
 import { ImageCarousel, ImageCarouselFullWidth } from '../ui/image-carousel';
 
-interface ContentCarouselProps {
+export interface ContentCarouselProps {
   content: string;
   className?: string;
   images: Array<{
