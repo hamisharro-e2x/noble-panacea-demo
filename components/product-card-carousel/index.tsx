@@ -117,31 +117,35 @@ export const ProductCardCarouselSingle = ({
       <h2 className="text-lg font-light uppercase lg:text-2xl" id="title">
         {title}
       </h2>
-      <CarouselContent>
-        {products.map((product, index) => (
-          <CarouselItemSingle
-            aria-label={`${index + 1} of ${products.length}`}
-            className="flex-2 md:flex-3 px-2"
-            id={`${id}-slide-${index + 1}`}
-            index={index}
-            key={index}
-          >
-            <ProductCard
-              imageSize="tall"
-              key={product.entityId}
-              product={product}
-              showBrand={showBrand}
-              showCart={showCart}
-              showCompare={showCompare}
-              showReviews={showReviews}
-            />
-          </CarouselItemSingle>
-        ))}
-      </CarouselContent>
-      <span className="no-wrap absolute bottom-0 left-0 right-0 top-0 flex items-center justify-between">
-        <CarouselPreviousIndicator className="size-4" />
-        <CarouselNextIndicator className="size-4" />
-      </span>
+      <div className="flex items-center justify-center">
+        <div className="hidden px-2 lg:flex">
+          <CarouselPreviousIndicator className="z-10 size-4 2xl:size-5" />
+        </div>
+        <CarouselContent>
+          {products.map((product, index) => (
+            <CarouselItemSingle
+              aria-label={`${index + 1} of ${products.length}`}
+              className="flex-2 px-2 md:flex-3"
+              id={`${id}-slide-${index + 1}`}
+              index={index}
+              key={index}
+            >
+              <ProductCard
+                imageSize="tall"
+                key={product.entityId}
+                product={product}
+                showBrand={showBrand}
+                showCart={showCart}
+                showCompare={showCompare}
+                showReviews={showReviews}
+              />
+            </CarouselItemSingle>
+          ))}
+        </CarouselContent>
+        <div className="hidden px-2 lg:flex">
+          <CarouselNextIndicator className="z-10 size-4 2xl:size-5" />
+        </div>
+      </div>
       <Pagination id={id} items={products} />
     </Carousel>
   );

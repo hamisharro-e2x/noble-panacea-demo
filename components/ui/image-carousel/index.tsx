@@ -39,16 +39,23 @@ function ImageCarouselFullWidth({ images }: ImageCarouselProps) {
 function ImageCarousel({ images }: ImageCarouselProps) {
   return (
     <Carousel className="flex items-center justify-center" opts={{ loop: true }}>
-      <div className="px-2">
-        <CarouselPreviousIndicator className="z-10 hidden size-4 lg:flex 2xl:size-5" />
+      <div className="hidden px-2 lg:flex">
+        <CarouselPreviousIndicator className="z-10 size-4 2xl:size-5" />
       </div>
       <CarouselContent className="z-0 m-0 mt-0 lg:mt-0">
         {images.map(({ alt, src }) => (
-          <Image alt={alt} height={300} key={src} src={src} width={300} />
+          <Image
+            alt={alt}
+            className="flex-2 md:flex-3"
+            height={300}
+            key={src}
+            src={src}
+            width={300}
+          />
         ))}
       </CarouselContent>
-      <div className="px-2">
-        <CarouselNextIndicator className="z-10 hidden size-4 lg:flex 2xl:size-5" />
+      <div className="hidden px-2 lg:flex">
+        <CarouselNextIndicator className="z-10 size-4 2xl:size-5" />
       </div>
     </Carousel>
   );
