@@ -18,7 +18,7 @@ function ImageCarouselFullWidth({ images }: ImageCarouselProps) {
         {images.map(({ alt, src }) => (
           <Image
             alt={alt}
-            className="border-2 border-white"
+            className="flex-shrink-0 border-2 border-white"
             height={300}
             key={src}
             src={src}
