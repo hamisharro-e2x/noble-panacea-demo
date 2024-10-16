@@ -113,7 +113,7 @@ export const ProductCardCarouselSingle = ({
   }
 
   return (
-    <Carousel aria-labelledby="title" className={cn('mb-14 px-8', className)} opts={{ loop: true }}>
+    <Carousel aria-labelledby="title" className={cn('mb-14', className)} opts={{ loop: true }}>
       <h2 className="text-lg font-light uppercase lg:text-2xl" id="title">
         {title}
       </h2>
