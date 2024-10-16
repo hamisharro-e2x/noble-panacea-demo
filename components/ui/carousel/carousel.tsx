@@ -191,6 +191,25 @@ const CarouselItem = forwardRef<
   );
 });
 
+const CarouselItemSingle = forwardRef<
+  ElementRef<'div'>,
+  ComponentPropsWithRef<'div'> & { index: number }
+>(({ children, className, index, ...props }, ref) => {
+  const { slidesInView } = useCarousel();
+
+  return (
+    <div
+      aria-roledescription="slide"
+      className={cn(!slidesInView.includes(index) && 'invisible', className)}
+      ref={ref}
+      role="group"
+      {...props}
+    >
+      {children}
+    </div>
+  );
+});
+
 CarouselItem.displayName = 'CarouselItem';
 
 const CarouselPreviousIndicator = forwardRef<ElementRef<'button'>, ComponentPropsWithRef<'button'>>(
@@ -256,7 +275,7 @@ const CarouselPagination = forwardRef<ElementRef<'div'>, ComponentPropsWithRef<'
       <div
         aria-label="Slides"
         className={cn(
-          'no-wrap absolute bottom-1 flex w-full items-center justify-center gap-2',
+          'no-wrap absolute bottom-1 left-0 right-0 flex w-full items-center justify-center gap-2',
           isHidden && 'hidden',
         )}
         ref={ref}
@@ -310,6 +329,7 @@ export {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselItemSingle,
   CarouselPreviousIndicator,
   CarouselNextIndicator,
   CarouselPagination,

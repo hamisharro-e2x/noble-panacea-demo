@@ -38,6 +38,7 @@ runtime.registerComponent(
       limit: Number({ label: 'Limit' }),
       category: TextInput({ label: 'Category', defaultValue: '501' }),
       className: Style({ properties: Style.All }),
+      single: Checkbox({ label: 'Single' }),
     },
   },
 );

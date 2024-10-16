@@ -3,13 +3,14 @@
 import { useEffect, useState } from 'react';
 
 import { Product } from '~/components/product-card';
-import { ProductCardCarousel } from '~/components/product-card-carousel';
+import { ProductCardCarousel, ProductCardCarouselSingle } from '~/components/product-card-carousel';
 
 export interface DynamicProductContentProps {
   limit?: number;
   category: string;
   title?: string;
   className?: string;
+  single?: boolean;
 }
 
 const DynamicProductGrid = ({
@@ -17,8 +18,11 @@ const DynamicProductGrid = ({
   category,
   title = '',
   className,
+  single,
 }: DynamicProductContentProps) => {
   const [hydratedProducts, setHydratedProducts] = useState<Array<Partial<Product>>>([]);
+
+  const Carousel = single ? ProductCardCarouselSingle : ProductCardCarousel;
 
   useEffect(() => {
     const load = async () => {
@@ -36,7 +40,7 @@ const DynamicProductGrid = ({
   }, [category, limit]);
 
   return (
-    <ProductCardCarousel
+    <Carousel
       className={className}
       products={hydratedProducts}
       showBrand={false}
