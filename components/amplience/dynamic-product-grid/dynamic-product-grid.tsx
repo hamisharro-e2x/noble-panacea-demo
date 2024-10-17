@@ -3,7 +3,8 @@
 import { useEffect, useState } from 'react';
 
 import { Product } from '~/components/product-card';
-import { ProductCardCarousel, ProductCardCarouselSingle } from '~/components/product-card-carousel';
+import { ProductCardCarousel } from '~/components/product-card-carousel';
+import { ProductCardCarouselSingle } from '~/components/product-card-carousel/single';
 
 export interface DynamicProductContentProps {
   limit?: number;
