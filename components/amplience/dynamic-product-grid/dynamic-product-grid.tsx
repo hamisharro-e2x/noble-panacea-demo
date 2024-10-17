@@ -18,7 +18,7 @@ const DynamicProductGrid = ({
   category,
   title = '',
   className,
-  single,
+  single = true,
 }: DynamicProductContentProps) => {
   const [hydratedProducts, setHydratedProducts] = useState<Array<Partial<Product>>>([]);
 

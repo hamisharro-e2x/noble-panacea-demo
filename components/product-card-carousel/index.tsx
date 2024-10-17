@@ -118,7 +118,7 @@ export const ProductCardCarouselSingle = ({
       className={cn('mb-14', className)}
       opts={{ loop: true, align: 'center' }}
     >
-      <h2 className="text-lg font-light uppercase lg:text-2xl" id="title">
+      <h2 className="w-full text-center text-lg font-light uppercase lg:text-2xl" id="title">
         {title}
       </h2>
       <div className="flex items-center justify-center">
