@@ -109,7 +109,7 @@ export const ProductCard = ({
           {product.defaultImage ? (
             <Image
               alt={product.defaultImage.altText ?? product.name ?? ''}
-              className="object-contain"
+              className="object-cover"
               fill
               priority={imagePriority}
               sizes="(max-width: 768px) 50vw, (max-width: 1536px) 25vw, 500px"

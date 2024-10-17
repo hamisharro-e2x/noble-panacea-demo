@@ -113,7 +113,11 @@ export const ProductCardCarouselSingle = ({
   }
 
   return (
-    <Carousel aria-labelledby="title" className={cn('mb-14', className)} opts={{ loop: true }}>
+    <Carousel
+      aria-labelledby="title"
+      className={cn('mb-14', className)}
+      opts={{ loop: true, align: 'center' }}
+    >
       <h2 className="text-lg font-light uppercase lg:text-2xl" id="title">
         {title}
       </h2>
@@ -125,10 +129,10 @@ export const ProductCardCarouselSingle = ({
           {products.map((product, index) => (
             <CarouselItemSingle
               aria-label={`${index + 1} of ${products.length}`}
-              className="flex-2 px-2 md:flex-3"
+              className="flex-2 px-3 md:flex-3"
               id={`${id}-slide-${index + 1}`}
               index={index}
-              key={index}
+              key={product.entityId}
             >
               <ProductCard
                 imageSize="tall"

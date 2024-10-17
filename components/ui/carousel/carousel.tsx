@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import {
   ComponentPropsWithRef,
   createContext,
+  CSSProperties,
   ElementRef,
   forwardRef,
   useCallback,
@@ -31,6 +32,7 @@ type CarouselContextProps = {
   scrollNext: () => void;
   canScrollPrev: boolean;
   canScrollNext: boolean;
+  scrolling: boolean;
   selectedSnapIndex: number;
   slidesInView: number[];
 } & CarouselProps;
@@ -56,21 +58,27 @@ const Carousel = forwardRef<ElementRef<'div'>, ComponentPropsWithRef<'div'> & Ca
       },
       plugins,
     );
-
+    const [scrolling, setScrolling] = useState(false);
     const [canScrollPrev, setCanScrollPrev] = useState(false);
     const [canScrollNext, setCanScrollNext] = useState(false);
-
     const [selectedSnapIndex, setSelectedSnapIndex] = useState(0);
-
     const [slidesInView, setSlidesInView] = useState<number[]>([0]);
+
+    const onSettle = useCallback((emblaApi: CarouselApi) => {
+      if (!emblaApi) {
+        return;
+      }
+
+      setScrolling(false);
+    }, []);
 
     const onSelect = useCallback((emblaApi: CarouselApi) => {
       if (!emblaApi) {
         return;
       }
 
+      setScrolling(true);
       setSelectedSnapIndex(emblaApi.selectedScrollSnap());
-
       setCanScrollPrev(emblaApi.canScrollPrev());
       setCanScrollNext(emblaApi.canScrollNext());
     }, []);
@@ -110,8 +118,10 @@ const Carousel = forwardRef<ElementRef<'div'>, ComponentPropsWithRef<'div'> & Ca
       }
 
       onSelect(api);
+      setScrolling(false);
       api.on('reInit', onSelect);
       api.on('select', onSelect);
+      api.on('settle', onSettle);
       api.on('slidesInView', () => {
         setSlidesInView(api.slidesInView());
       });
@@ -119,7 +129,7 @@ const Carousel = forwardRef<ElementRef<'div'>, ComponentPropsWithRef<'div'> & Ca
       return () => {
         api.off('select', onSelect);
       };
-    }, [api, onSelect]);
+    }, [api, onSelect, onSettle]);
 
     return (
       <CarouselContext.Provider
@@ -133,6 +143,7 @@ const Carousel = forwardRef<ElementRef<'div'>, ComponentPropsWithRef<'div'> & Ca
           canScrollNext,
           selectedSnapIndex,
           slidesInView,
+          scrolling,
         }}
       >
         <div
@@ -191,11 +202,28 @@ const CarouselItem = forwardRef<
   );
 });
 
+const large: CSSProperties = {
+  scale: 1.05,
+  transitionDuration: '0.5s',
+};
+
 const CarouselItemSingle = forwardRef<
   ElementRef<'div'>,
   ComponentPropsWithRef<'div'> & { index: number }
 >(({ children, className, index, ...props }, ref) => {
-  const { slidesInView } = useCarousel();
+  const { slidesInView, selectedSnapIndex, scrolling } = useCarousel();
+  const [style, setStyle] = useState<CSSProperties>({});
+
+  useEffect(() => {
+    if (selectedSnapIndex === index && !scrolling) {
+      setStyle(large);
+    } else if (style === large) {
+      setStyle({ transitionDuration: '0.5s' });
+    } else {
+      setStyle({});
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [slidesInView, selectedSnapIndex, scrolling, index]);
 
   return (
     <div
@@ -203,6 +231,7 @@ const CarouselItemSingle = forwardRef<
       className={cn(!slidesInView.includes(index) && 'invisible', className)}
       ref={ref}
       role="group"
+      style={{ scale: 1, ...style }}
       {...props}
     >
       {children}
