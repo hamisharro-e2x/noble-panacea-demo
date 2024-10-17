@@ -212,7 +212,7 @@ const CarouselItemSingle = forwardRef<
   ComponentPropsWithRef<'div'> & { index: number }
 >(({ children, className, index, ...props }, ref) => {
   const { slidesInView, selectedSnapIndex, scrolling } = useCarousel();
-  const [style, setStyle] = useState<CSSProperties>({});
+  const [style, setStyle] = useState<CSSProperties>(selectedSnapIndex === index ? large : {});
 
   useEffect(() => {
     if (selectedSnapIndex === index && !scrolling) {
